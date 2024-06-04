@@ -58,7 +58,8 @@ def play_playlist_loop(token_info):
         time.sleep(1)
 
 # Schedule the playlist to start at a specific time
-token_info = st.experimental_get_query_params().get('access_token', [None])[0]
+query_params = st.experimental_get_query_params()
+token_info = query_params.get('access_token', [None])[0]
 if token_info:
     schedule.every().day.at("10:00").do(start_playlist, token_info)
 
