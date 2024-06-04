@@ -36,7 +36,7 @@ def log_usage(action):
         df = pd.DataFrame(columns=['timestamp', 'action'])
     # Append new data
     new_data = {'timestamp': datetime.now(), 'action': action}
-    df = df.append(new_data, ignore_index=True)
+    df = pd.concat([df, new_data], ignore_index=True)
     # Save to CSV
     df.to_csv(LOG_FILE, index=False)
 
