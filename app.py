@@ -63,11 +63,11 @@ t = threading.Thread(target=play_playlist_loop)
 t.start()
 
 # Streamlit interface
-st.title('Spotify Playlist Scheduler')
+st.title('OTunes for TV Óčko')
 
-if st.button('Start Playlist Now'):
+if st.button('Play'):
     start_playlist()
-    st.write('Playlist started!')
+    st.write('Otunes started!')
 
 # Log when the user stops using the app
 log_usage('stop')
