@@ -1,1 +1,9 @@
-pip install streamlit spotipy schedule
+import streamlit as st
+
+# Replace with the URL of your desired playlist
+playlist_url = "https://open.spotify.com/embed/playlist/1sYrLT7PtZexgW4tyUCAQH?utm_source=generator&theme=0"
+
+# Display the playlist using Streamlit components
+st.title("My Spotify Playlist")
+st.write("Check out this playlist!")
+st.components.v1.iframe(playlist_url, width=100%, height=352)
