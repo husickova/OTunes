@@ -2,7 +2,7 @@ import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 import schedule
 import time
 import threading
@@ -60,6 +60,18 @@ def start_playlist(token_info):
     else:
         st.info('Playback is already running.')
 
+# Function to ensure continuous playback
+def ensure_continuous_playback(token_info):
+    sp = spotipy.Spotify(auth=token_info['access_token'])
+    while True:
+        playback = sp.current_playback()
+        if playback is None or not playback['is_playing']:
+            try:
+                sp.start_playback(context_uri=playlist_uri)
+            except spotipy.SpotifyException as e:
+                st.error(f'Error ensuring continuous playback: {e}')
+        time.sleep(30)  # Check every 30 seconds
+
 # Function to run schedule loop
 def play_playlist_loop(token_info):
     while True:
@@ -70,8 +82,11 @@ def play_playlist_loop(token_info):
 def schedule_playlist(token_info):
     schedule.every().day.at("10:00").do(start_playlist, token_info)
     # Run the schedule in a separate thread
-    t = threading.Thread(target=play_playlist_loop, args=(token_info,))
-    t.start()
+    t1 = threading.Thread(target=play_playlist_loop, args=(token_info,))
+    t1.start()
+    # Ensure continuous playback in a separate thread
+    t2 = threading.Thread(target=ensure_continuous_playback, args=(token_info,))
+    t2.start()
 
 # Streamlit interface
 st.title('OTunes for TV Óčko')
