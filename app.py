@@ -10,7 +10,7 @@ from datetime import datetime
 # Spotify API credentials
 CLIENT_ID = '0c03bcd06c194e39887207a52ff3d4c1'
 CLIENT_SECRET = 'aa2524cc05f3481badc50458d8aeab5b'
-REDIRECT_URI = 'http://localhost:8888/callback'
+REDIRECT_URI = 'https://otunesgit-dcrrmv3ymryxl9haxuvoq3.streamlit.app/#spotify-playlist-scheduler'
 
 # Spotify authentication
 scope = 'user-modify-playback-state user-read-playback-state'
