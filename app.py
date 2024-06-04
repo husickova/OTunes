@@ -43,12 +43,22 @@ def log_usage(action):
 # Start playlist function
 def start_playlist(token_info):
     sp = spotipy.Spotify(auth=token_info['access_token'])
+    # Get the user's current playback devices
+    devices = sp.devices()
+    if not devices['devices']:
+        st.error('No active devices found. Please open Spotify on a device and try again.')
+        return
     # Get the user's current playback
     playback = sp.current_playback()
     if playback is None or not playback['is_playing']:
         # Start playing the playlist
-        sp.start_playback(context_uri=playlist_uri)
-    log_usage('start')
+        try:
+            sp.start_playback(context_uri=playlist_uri)
+            log_usage('start')
+        except spotipy.SpotifyException as e:
+            st.error(f'Error starting playback: {e}')
+    else:
+        st.info('Playback is already running.')
 
 # Function to run schedule loop
 def play_playlist_loop(token_info):
