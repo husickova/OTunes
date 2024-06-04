@@ -35,7 +35,7 @@ def log_usage(action):
     except FileNotFoundError:
         df = pd.DataFrame(columns=['timestamp', 'action'])
     # Append new data
-    new_data = {'timestamp': datetime.now(), 'action': action}
+    new_data = pd.DataFrame({'timestamp': [datetime.now()], 'action': [action]})
     df = pd.concat([df, new_data], ignore_index=True)
     # Save to CSV
     df.to_csv(LOG_FILE, index=False)
@@ -73,3 +73,4 @@ if st.button('Play'):
 log_usage('stop')
 
 st.write('The playlist will automatically start playing at 10:00 AM every day.')
+
