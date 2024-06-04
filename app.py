@@ -98,6 +98,12 @@ if token_info and token_info.get('access_token'):
     log_usage('stop')
     st.write('The playlist will automatically start playing at 10:00 AM every day.')
     schedule_playlist(token_info)
+
+    # Embed Spotify Player
+    embed_code = '''
+    <iframe src="https://open.spotify.com/embed/playlist/6oQkWFEnlrUwJgT0mhLFrT" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    '''
+    st.markdown(embed_code, unsafe_allow_html=True)
 else:
     auth_url = sp_oauth.get_authorize_url()
     st.write(f'Please go to this URL to authorize: [Authorize]({auth_url})')
