@@ -2,7 +2,7 @@ import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 import schedule
 import time
 import threading
@@ -107,9 +107,7 @@ else:
 
 if token_info and token_info.get('access_token'):
     st.write('Authorization successful.')
-    if st.button('Play'):
-        start_playlist(token_info)
-        st.write('Otunes started!')
+    start_playlist(token_info)  # Automatically start the playlist
     log_usage('stop')
     st.write('The playlist will automatically start playing at 10:00 AM every day.')
     schedule_playlist(token_info)
