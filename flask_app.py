@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, url_for
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -17,7 +17,8 @@ sp_oauth = SpotifyOAuth(client_id=CLIENT_ID,
 def callback():
     code = request.args.get('code')
     token_info = sp_oauth.get_access_token(code)
-    return redirect(f'/token?access_token={token_info["access_token"]}')
+    access_token = token_info['access_token']
+    return redirect(f'/?access_token={access_token}')
 
 if __name__ == '__main__':
     app.run(port=8888)
