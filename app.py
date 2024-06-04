@@ -8,8 +8,8 @@ import pandas as pd
 from datetime import datetime
 
 # Spotify API credentials
-CLIENT_ID = 'your_client_id'
-CLIENT_SECRET = 'your_client_secret'
+CLIENT_ID = '0c03bcd06c194e39887207a52ff3d4c1'
+CLIENT_SECRET = 'aa2524cc05f3481badc50458d8aeab5b'
 REDIRECT_URI = 'http://localhost:8888/callback'
 
 # Spotify authentication
