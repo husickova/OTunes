@@ -62,7 +62,7 @@ def start_playlist(token_info, position_ms=0):
         except spotipy.SpotifyException as e:
             st.error(f'Error starting playback: {e}')
     else:
-        st.info('Playback is already running.')
+        st.info('Užij si poslech nekonečného OTunes playlistu. Mění se každých 24 hodin podle toho, co zrovna frčí. Jestli tě baví, ulož si ho do Spotify a čekej čerstvou dávku muziky každé ráno.')
 
 # Function to ensure continuous playback
 def ensure_continuous_playback(token_info):
