@@ -38,9 +38,9 @@ st.markdown('<h2 class="center-text">Neverending music channels full of music yo
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
 # Selection for genres
-genre = st.selectbox('Channels:', ('Choose', 'Pop Unlimited Vibes', 'All Gen Rock Hits', 'HipHop Beats Central', 'Electro Energy Station', 'Country Roads'))
+genre = st.selectbox('Channels:', ('Choose', 'OTunes POP', 'OTunes ROCK', 'OTunes HIPHOP', 'OTunes ELECTRO', 'OTunes COUNTRY'))
 
-if genre == 'Pop Unlimited Vibes':
+if genre == 'OTunes POP':
     # Embed YouTube Music Player for Pop
     pop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-&autoplay=1"
     pop_playlist_embed_code = f'''
@@ -51,7 +51,7 @@ if genre == 'Pop Unlimited Vibes':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'All Gen Rock Hits':
+elif genre == 'OTunes ROCK':
     # Embed YouTube Music Player for Rock
     rock_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE&autoplay=1"
     rock_playlist_embed_code = f'''
@@ -62,7 +62,7 @@ elif genre == 'All Gen Rock Hits':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'Electro Energy Station':
+elif genre == 'OTunes ELECTRO':
     # Embed YouTube Music Player for Electro
     electro_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf&autoplay=1"
     electro_playlist_embed_code = f'''
@@ -73,7 +73,7 @@ elif genre == 'Electro Energy Station':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'HipHop Beats Central':
+elif genre == 'OTunes HIPHOP':
     # Embed YouTube Music Player for HipHop
     hiphop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4&autoplay=1"
     hiphop_playlist_embed_code = f'''
@@ -84,7 +84,7 @@ elif genre == 'HipHop Beats Central':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'Country Roads':
+elif genre == 'OTunes COUNTRY':
     # Embed YouTube Music Player for Country
     country_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ&autoplay=1"
     country_playlist_embed_code = f'''
