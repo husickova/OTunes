@@ -34,8 +34,8 @@ st.markdown(
 
 # Streamlit interface
 st.markdown('<h1 class="center-text">OTunes</h1>', unsafe_allow_html=True)
-st.markdown('<h2 class="center-text">Nekonečné hudební playlisty co tě budou bavit.</h2>', unsafe_allow_html=True)
-st.markdown('<p class="center-text">Vyber si oblíbený žánr:</p>', unsafe_allow_html=True)
+st.markdown('<h2 class="center-text">Neverending music channel full of music you love.</h2>', unsafe_allow_html=True)
+st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
 # Selection for genres
 genre = st.selectbox('žánr:', ('Vyberte', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
