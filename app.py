@@ -38,7 +38,7 @@ st.markdown('<h2 class="center-text">Nekonečné hudební playlisty co tě budou
 st.markdown('<p class="center-text">Vyber si oblíbený žánr:</p>', unsafe_allow_html=True)
 
 # Selection for genres
-genre = st.selectbox('Vyberte', 'Random', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country')
+genre = st.selectbox('žánr:', ('Vyberte', 'Random', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
 
 if genre == 'Random':
     # Embed YouTube Music Player for Random
