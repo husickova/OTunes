@@ -2,7 +2,7 @@ import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 import schedule
 import time
 import threading
@@ -22,8 +22,12 @@ sp_oauth = SpotifyOAuth(client_id=CLIENT_ID,
 # Playlist URI
 playlist_uri = 'spotify:playlist:6oQkWFEnlrUwJgT0mhLFrT'
 
-# CSV file for logging usage data
-LOG_FILE = 'usage_log.csv'
+# Function to calculate the start position based on the current time
+def calculate_start_position():
+    now = datetime.now()
+    midnight = datetime.combine(now.date(), datetime.min.time())
+    elapsed_time = now - midnight
+    return int(elapsed_time.total_seconds() * 1000)  # convert to milliseconds
 
 # Function to log usage data
 def log_usage(action):
@@ -31,17 +35,17 @@ def log_usage(action):
         return
     # Load existing data
     try:
-        df = pd.read_csv(LOG_FILE)
+        df = pd.read_csv('usage_log.csv')
     except FileNotFoundError:
         df = pd.DataFrame(columns=['timestamp', 'action'])
     # Append new data
     new_data = pd.DataFrame({'timestamp': [datetime.now()], 'action': [action]})
     df = pd.concat([df, new_data], ignore_index=True)
     # Save to CSV
-    df.to_csv(LOG_FILE, index=False)
+    df.to_csv('usage_log.csv', index=False)
 
 # Start playlist function
-def start_playlist(token_info):
+def start_playlist(token_info, position_ms=0):
     sp = spotipy.Spotify(auth=token_info['access_token'])
     # Get the user's current playback devices
     devices = sp.devices()
@@ -51,9 +55,9 @@ def start_playlist(token_info):
     # Get the user's current playback
     playback = sp.current_playback()
     if playback is None or not playback['is_playing']:
-        # Start playing the playlist
+        # Start playing the playlist from the specified position
         try:
-            sp.start_playback(context_uri=playlist_uri)
+            sp.start_playback(context_uri=playlist_uri, position_ms=position_ms)
             log_usage('start')
         except spotipy.SpotifyException as e:
             st.error(f'Error starting playback: {e}')
@@ -67,7 +71,7 @@ def ensure_continuous_playback(token_info):
         playback = sp.current_playback()
         if playback is None or not playback['is_playing']:
             try:
-                sp.start_playback(context_uri=playlist_uri)
+                sp.start_playback(context_uri=playlist_uri, position_ms=calculate_start_position())
             except spotipy.SpotifyException as e:
                 st.error(f'Error ensuring continuous playback: {e}')
         time.sleep(30)  # Check every 30 seconds
@@ -80,7 +84,7 @@ def play_playlist_loop(token_info):
 
 # Schedule the playlist to start at a specific time
 def schedule_playlist(token_info):
-    schedule.every().day.at("10:00").do(start_playlist, token_info)
+    schedule.every().day.at("00:00").do(start_playlist, token_info, position_ms=0)
     # Run the schedule in a separate thread
     t1 = threading.Thread(target=play_playlist_loop, args=(token_info,))
     t1.start()
@@ -106,15 +110,14 @@ else:
     token_info = sp_oauth.get_cached_token()
 
 if token_info and token_info.get('access_token'):
-    st.write('Authorization successful.')
-    start_playlist(token_info)  # Automatically start the playlist
+    position_ms = calculate_start_position()
+    start_playlist(token_info, position_ms=position_ms)  # Automatically start the playlist at the correct position
     log_usage('stop')
-    st.write('The playlist will automatically start playing at 10:00 AM every day.')
     schedule_playlist(token_info)
 
-    # Embed Spotify Player
+    # Embed Spotify Player with autoplay
     embed_code = '''
-    <iframe src="https://open.spotify.com/embed/playlist/6oQkWFEnlrUwJgT0mhLFrT" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <iframe src="https://open.spotify.com/embed/playlist/6oQkWFEnlrUwJgT0mhLFrT?autoplay=1" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     '''
     st.markdown(embed_code, unsafe_allow_html=True)
 else:
