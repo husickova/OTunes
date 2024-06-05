@@ -38,7 +38,7 @@ st.markdown('<h2 class="center-text">Neverending music channel full of music you
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
 # Selection for genres
-genre = st.selectbox('žánr:', ('Vyberte', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
+genre = st.selectbox('Channels:', ('Choose', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
 
 if genre == 'Pop':
     # Embed YouTube Music Player for Pop
