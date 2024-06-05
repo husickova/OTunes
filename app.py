@@ -53,7 +53,7 @@ if genre == 'Random':
 
 elif genre == 'Pop':
     # Embed YouTube Music Player for Pop
-    pop_playlist_url = "https://www.tunemymusic.com/share/bscxrl6ekk"
+    pop_playlist_url = "https://music.youtube.com/playlist?list=PLatjrwfoBSuwG6ywy9pt71Zs091nS-OEU&si=rL4z2LL222E5zQRo"
     pop_playlist_embed_code = f'''
     <iframe width="100%" height="380" src="{pop_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     '''
