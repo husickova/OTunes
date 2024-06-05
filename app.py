@@ -49,7 +49,6 @@ if genre == 'Random':
 
     st.markdown(youtube_music_embed_code, unsafe_allow_html=True)
     log_usage('start')
-    st.write('The playlist will play continuously based on the current time.')
     log_usage('stop')
 
 elif genre in ['Pop', 'Rock', 'HipHop', 'Electro', 'Country']:
