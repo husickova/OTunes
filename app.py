@@ -20,13 +20,25 @@ def log_usage(action):
     # Save to CSV
     df.to_csv(LOG_FILE, index=False)
 
+# CSS styles to center the text
+st.markdown(
+    """
+    <style>
+    .center-text {
+        text-align: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Streamlit interface
-st.title('OTunes pro TV Óčko')
-st.subheader('Nekonečné playlisty plné hudby, kterou máš rád. Každý den aktualizované podle trendů a toho co vás baví.')
-st.write('Vyber si jaký styl máš nejradši!')
+st.markdown('<h1 class="center-text">OTunes for TV Óčko</h1>', unsafe_allow_html=True)
+st.markdown('<h2 class="center-text">nekonečné playlisty</h2>', unsafe_allow_html=True)
+st.markdown('<p class="center-text">Vyber si oblíbený žánr</p>', unsafe_allow_html=True)
 
 # Selection for genres
-genre = st.selectbox('Vyber si žánr', ('Vyberte', 'Random', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
+genre = st.selectbox('Vyber žánr:', ('Vyberte', 'Random', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
 
 if genre == 'Random':
     # Embed YouTube Music Player for Random
@@ -41,4 +53,4 @@ if genre == 'Random':
     log_usage('stop')
 
 elif genre in ['Pop', 'Rock', 'HipHop', 'Electro', 'Country']:
-    st.write(f'{genre} playlist will be added soon.')
+    st.markdown(f'<p class="center-text">{genre} playlist will be added soon.</p>', unsafe_allow_html=True)
