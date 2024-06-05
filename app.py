@@ -38,9 +38,9 @@ st.markdown('<h2 class="center-text">Neverending music channel full of music you
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
 # Selection for genres
-genre = st.selectbox('Channels:', ('Choose', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
+genre = st.selectbox('Channels:', ('Choose', 'Pop - Unlimited Vibes', 'Rock', 'HipHop Beats Central', 'Electro Energy Station', 'Country Roads'))
 
-if genre == 'Pop':
+if genre == 'Pop - Unlimited Vibes':
     # Embed YouTube Music Player for Pop
     pop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-&autoplay=1"
     pop_playlist_embed_code = f'''
@@ -62,7 +62,7 @@ elif genre == 'Rock':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'Electro':
+elif genre == 'Electro Energy Station':
     # Embed YouTube Music Player for Electro
     electro_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf&autoplay=1"
     electro_playlist_embed_code = f'''
@@ -73,7 +73,7 @@ elif genre == 'Electro':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'HipHop':
+elif genre == 'HipHop Beats Central':
     # Embed YouTube Music Player for HipHop
     hiphop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4&autoplay=1"
     hiphop_playlist_embed_code = f'''
@@ -84,7 +84,7 @@ elif genre == 'HipHop':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'Country':
+elif genre == 'Country Roads':
     # Embed YouTube Music Player for Country
     country_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ&autoplay=1"
     country_playlist_embed_code = f'''
