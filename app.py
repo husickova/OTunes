@@ -21,19 +21,24 @@ def log_usage(action):
     df.to_csv(LOG_FILE, index=False)
 
 # Streamlit interface
-st.title('OTunes for TV Óčko')
-st.subheader('Neverending playlists full of music you love.')
+st.title('OTunes pro TV Óčko')
+st.subheader('Nekonečné playlisty plné hudby, kterou máš rád. Každý den aktualizované podle trendů a toho co vás baví.')
+st.write('Vyber si jaký styl máš nejradši!')
 
+# Selection for genres
+genre = st.selectbox('Vyber si žánr', ('Vyberte', 'Random', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
 
-# Embed YouTube Music Player
-youtube_music_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz9av_uyCwqwyBJuggomNcg&autoplay=1"
-youtube_music_embed_code = f'''
-<iframe width="100%" height="380" src="{youtube_music_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-'''
+if genre == 'Random':
+    # Embed YouTube Music Player for Random
+    youtube_music_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz9av_uyCwqwyBJuggomNcg&autoplay=1"
+    youtube_music_embed_code = f'''
+    <iframe width="100%" height="380" src="{youtube_music_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    '''
 
-st.markdown(youtube_music_embed_code, unsafe_allow_html=True)
+    st.markdown(youtube_music_embed_code, unsafe_allow_html=True)
+    log_usage('start')
+    st.write('The playlist will play continuously based on the current time.')
+    log_usage('stop')
 
-log_usage('start')
-st.write('Listen and enjoy!')
-
-log_usage('stop')
+elif genre in ['Pop', 'Rock', 'HipHop', 'Electro', 'Country']:
+    st.write(f'{genre} playlist will be added soon.')
