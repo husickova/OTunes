@@ -53,7 +53,7 @@ if genre == 'Random':
 
 elif genre == 'Pop':
     # Embed YouTube Music Player for Pop
-    pop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuwG6ywy9pt71Zs091nS-OEU&autoplay=1"
+    pop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-&autoplay=1"
     pop_playlist_embed_code = f'''
     <iframe width="100%" height="380" src="{pop_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     '''
@@ -62,5 +62,38 @@ elif genre == 'Pop':
     log_usage('start')
     log_usage('stop')
 
-elif genre in ['Rock', 'HipHop', 'Electro', 'Country']:
+elif genre == 'Rock':
+    # Embed YouTube Music Player for Rock
+    rock_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE&autoplay=1"
+    rock_playlist_embed_code = f'''
+    <iframe width="100%" height="380" src="{rock_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    '''
+
+    st.markdown(rock_playlist_embed_code, unsafe_allow_html=True)
+    log_usage('start')
+    log_usage('stop')
+
+elif genre == 'Electro':
+    # Embed YouTube Music Player for Electro
+    electro_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf&autoplay=1"
+    electro_playlist_embed_code = f'''
+    <iframe width="100%" height="380" src="{electro_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    '''
+
+    st.markdown(electro_playlist_embed_code, unsafe_allow_html=True)
+    log_usage('start')
+    log_usage('stop')
+
+elif genre == 'HipHop':
+    # Embed YouTube Music Player for HipHop
+    hiphop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4&autoplay=1"
+    hiphop_playlist_embed_code = f'''
+    <iframe width="100%" height="380" src="{hiphop_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    '''
+
+    st.markdown(hiphop_playlist_embed_code, unsafe_allow_html=True)
+    log_usage('start')
+    log_usage('stop')
+
+elif genre == 'Country':
     st.markdown(f'<p class="center-text">{genre} playlist will be added soon.</p>', unsafe_allow_html=True)
