@@ -34,7 +34,6 @@ st.markdown(
 
 # Streamlit interface
 st.markdown('<h1 class="center-text">OTunes</h1>', unsafe_allow_html=True)
-st.markdown('<p class="center-text">ve spolupráci s TV Óčko</p>', unsafe_allow_html=True)
 st.markdown('<h2 class="center-text">Nekonečné hudební playlisty co tě budou bavit.</h2>', unsafe_allow_html=True)
 st.markdown('<p class="center-text">Vyber si oblíbený žánr:</p>', unsafe_allow_html=True)
 
