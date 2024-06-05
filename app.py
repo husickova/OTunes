@@ -23,13 +23,13 @@ def log_usage(action):
 # Streamlit interface
 st.title('OTunes for TV Óčko')
 
-# Embed YouTube Player for the playlist
-youtube_playlist_id = 'PLatjrwfoBSuz9av_uyCwqwyBJuggomNcg'
-youtube_embed_code = f'''
-<iframe width="100%" height="380" src="https://www.youtube.com/embed/videoseries?list={youtube_playlist_id}&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+# Embed YouTube Music Player
+youtube_music_playlist_url = "https://music.youtube.com/playlist?list=PLatjrwfoBSuz9av_uyCwqwyBJuggomNcg&autoplay=1"
+youtube_music_embed_code = f'''
+<iframe width="100%" height="380" src="{youtube_music_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 '''
 
-st.markdown(youtube_embed_code, unsafe_allow_html=True)
+st.markdown(youtube_music_embed_code, unsafe_allow_html=True)
 
 log_usage('start')
 st.write('The playlist will play continuously based on the current time.')
