@@ -24,7 +24,7 @@ def log_usage(action):
 st.title('OTunes for TV Óčko')
 
 # Embed YouTube Music Player
-youtube_music_playlist_url = "https://music.youtube.com/playlist?list=PLatjrwfoBSuz9av_uyCwqwyBJuggomNcg&autoplay=1"
+youtube_music_playlist_url = "https://music.youtube.com/playlist?list=PLatjrwfoBSuz9av_uyCwqwyBJuggomNcg&si=29cLZnbMLi7T5j2s"
 youtube_music_embed_code = f'''
 <iframe width="100%" height="380" src="{youtube_music_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 '''
