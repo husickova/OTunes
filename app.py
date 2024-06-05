@@ -38,20 +38,9 @@ st.markdown('<h2 class="center-text">Nekonečné hudební playlisty co tě budou
 st.markdown('<p class="center-text">Vyber si oblíbený žánr:</p>', unsafe_allow_html=True)
 
 # Selection for genres
-genre = st.selectbox('žánr:', ('Vyberte', 'Random', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
+genre = st.selectbox('žánr:', ('Vyberte', 'Pop', 'Rock', 'HipHop', 'Electro', 'Country'))
 
-if genre == 'Random':
-    # Embed YouTube Music Player for Random
-    youtube_music_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz9av_uyCwqwyBJuggomNcg&autoplay=1"
-    youtube_music_embed_code = f'''
-    <iframe width="100%" height="380" src="{youtube_music_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    '''
-
-    st.markdown(youtube_music_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
-
-elif genre == 'Pop':
+if genre == 'Pop':
     # Embed YouTube Music Player for Pop
     pop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-&autoplay=1"
     pop_playlist_embed_code = f'''
@@ -96,4 +85,12 @@ elif genre == 'HipHop':
     log_usage('stop')
 
 elif genre == 'Country':
-    st.markdown(f'<p class="center-text">{genre} playlist will be added soon.</p>', unsafe_allow_html=True)
+    # Embed YouTube Music Player for Country
+    country_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ&autoplay=1"
+    country_playlist_embed_code = f'''
+    <iframe width="100%" height="380" src="{country_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    '''
+
+    st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
+    log_usage('start')
+    log_usage('stop')
