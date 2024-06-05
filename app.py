@@ -38,9 +38,9 @@ st.markdown('<h2 class="center-text">Neverending music channel full of music you
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
 # Selection for genres
-genre = st.selectbox('Channels:', ('Choose', 'Pop - Unlimited Vibes', 'Rock', 'HipHop Beats Central', 'Electro Energy Station', 'Country Roads'))
+genre = st.selectbox('Channels:', ('Choose', 'Pop Unlimited Vibes', 'All Gen Rock Hits', 'HipHop Beats Central', 'Electro Energy Station', 'Country Roads'))
 
-if genre == 'Pop - Unlimited Vibes':
+if genre == 'Pop Unlimited Vibes':
     # Embed YouTube Music Player for Pop
     pop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-&autoplay=1"
     pop_playlist_embed_code = f'''
@@ -51,7 +51,7 @@ if genre == 'Pop - Unlimited Vibes':
     log_usage('start')
     log_usage('stop')
 
-elif genre == 'Rock':
+elif genre == 'All Gen Rock Hits':
     # Embed YouTube Music Player for Rock
     rock_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE&autoplay=1"
     rock_playlist_embed_code = f'''
