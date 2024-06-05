@@ -51,5 +51,16 @@ if genre == 'Random':
     log_usage('start')
     log_usage('stop')
 
-elif genre in ['Pop', 'Rock', 'HipHop', 'Electro', 'Country']:
+elif genre == 'Pop':
+    # Embed YouTube Music Player for Pop
+    pop_playlist_url = "https://www.tunemymusic.com/share/bscxrl6ekk"
+    pop_playlist_embed_code = f'''
+    <iframe width="100%" height="380" src="{pop_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    '''
+
+    st.markdown(pop_playlist_embed_code, unsafe_allow_html=True)
+    log_usage('start')
+    log_usage('stop')
+
+elif genre in ['Rock', 'HipHop', 'Electro', 'Country']:
     st.markdown(f'<p class="center-text">{genre} playlist will be added soon.</p>', unsafe_allow_html=True)
