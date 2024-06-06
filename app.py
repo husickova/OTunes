@@ -1,24 +1,4 @@
 import streamlit as st
-import pandas as pd
-from datetime import datetime
-
-# CSV file for logging usage data
-LOG_FILE = 'usage_log.csv'
-
-# Function to log usage data
-def log_usage(action):
-    if action not in ['start', 'stop']:
-        return
-    # Load existing data
-    try:
-        df = pd.read_csv(LOG_FILE)
-    except FileNotFoundError:
-        df = pd.DataFrame(columns=['timestamp', 'action'])
-    # Append new data
-    new_data = pd.DataFrame({'timestamp': [datetime.now()], 'action': [action]})
-    df = pd.concat([df, new_data], ignore_index=True)
-    # Save to CSV
-    df.to_csv(LOG_FILE, index=False)
 
 # CSS styles to center the text and logo
 st.markdown(
@@ -57,8 +37,6 @@ if genre == 'OTunes POP':
     '''
 
     st.markdown(pop_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes ROCK':
     # Embed YouTube Music Player for Rock
@@ -68,8 +46,6 @@ elif genre == 'OTunes ROCK':
     '''
 
     st.markdown(rock_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes ELECTRO':
     # Embed YouTube Music Player for Electro
@@ -79,8 +55,6 @@ elif genre == 'OTunes ELECTRO':
     '''
 
     st.markdown(electro_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes HIPHOP':
     # Embed YouTube Music Player for HipHop
@@ -90,8 +64,6 @@ elif genre == 'OTunes HIPHOP':
     '''
 
     st.markdown(hiphop_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes COUNTRY':
     # Embed YouTube Music Player for Country
@@ -101,5 +73,3 @@ elif genre == 'OTunes COUNTRY':
     '''
 
     st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
