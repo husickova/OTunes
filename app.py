@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 # CSS styles to center the text and logo
 st.markdown(
@@ -74,8 +75,8 @@ elif genre == 'OTunes COUNTRY':
 
     st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
 
-# Add Google Analytics
-st.markdown(
+# Add Google Analytics using components.html
+components.html(
     """
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
@@ -87,5 +88,5 @@ st.markdown(
     gtag('config', 'G-16H3MEHP7P');
     </script>
     """,
-    unsafe_allow_html=True,
+    height=0,
 )
