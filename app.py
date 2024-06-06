@@ -10,7 +10,7 @@ with streamlit_analytics.track():
         <style>
         .center-text {
             text-align: center;
-            font-family: sans-serif; /* Customize font family */
+            font-family: Open Sans; /* Customize font family */
             font-size: 18px; /* Customize font size */
         }
         .center-image {
