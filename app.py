@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit_analytics
 import datetime
 
 # CSS styles to center the text and logo
