@@ -27,8 +27,8 @@ st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', un
 st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
-# Selection for genres
-genre = st.selectbox('Channels:', ('Choose', 'OTunes POP', 'OTunes ROCK', 'OTunes HIPHOP', 'OTunes ELECTRO', 'OTunes COUNTRY'))
+# Selection for genres without the label "Channels"
+genre = st.selectbox('', ('Choose', 'OTunes POP', 'OTunes ROCK', 'OTunes HIPHOP', 'OTunes ELECTRO', 'OTunes COUNTRY'))
 
 # Function to calculate time offset
 def calculate_time_offset():
