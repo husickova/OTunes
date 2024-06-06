@@ -1,7 +1,7 @@
 import os
 
 # Run the add_ga.py script
-os.system('add_ga.py')
+os.system('python add_ga.py')
 
 # Run the Streamlit app
-os.system('app.py')
+os.system('streamlit run app.py')
