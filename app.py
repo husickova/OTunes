@@ -1,31 +1,4 @@
 import streamlit as st
-import pandas as pd
-from datetime import datetime
-import os
-
-# Define the path to the log file in your GitHub repository
-LOG_FILE = os.path.join('https://github.com/husickova/OTunes/blob/main/', 'usage_log.csv')
-
-# Function to log usage data
-def log_usage(action, timestamp=None):
-    if action not in ['start', 'stop']:
-        return
-    # Use the provided timestamp or get the current time
-    if timestamp is None:
-        timestamp = datetime.now()
-    # Load existing data
-    try:
-        df = pd.read_csv(LOG_FILE)
-    except FileNotFoundError:
-        df = pd.DataFrame(columns=['timestamp', 'action'])
-    # Append new data
-    new_data = pd.DataFrame({'timestamp': [timestamp], 'action': [action]})
-    df = pd.concat([df, new_data], ignore_index=True)
-    # Save to CSV
-    df.to_csv(LOG_FILE, index=False)
-
-# Log the start time when the user opens the app
-log_usage('start')
 
 # CSS styles to center the text and logo
 st.markdown(
@@ -64,8 +37,6 @@ if genre == 'OTunes POP':
     '''
 
     st.markdown(pop_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes ROCK':
     # Embed YouTube Music Player for Rock
@@ -75,8 +46,6 @@ elif genre == 'OTunes ROCK':
     '''
 
     st.markdown(rock_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes ELECTRO':
     # Embed YouTube Music Player for Electro
@@ -86,8 +55,6 @@ elif genre == 'OTunes ELECTRO':
     '''
 
     st.markdown(electro_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes HIPHOP':
     # Embed YouTube Music Player for HipHop
@@ -97,8 +64,6 @@ elif genre == 'OTunes HIPHOP':
     '''
 
     st.markdown(hiphop_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
 elif genre == 'OTunes COUNTRY':
     # Embed YouTube Music Player for Country
@@ -108,37 +73,17 @@ elif genre == 'OTunes COUNTRY':
     '''
 
     st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
-    log_usage('start')
-    log_usage('stop')
 
-# JavaScript to log the stop time when the user leaves the page
+# Add Google Analytics
 st.markdown(
     """
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
     <script>
-    window.addEventListener('beforeunload', function (event) {
-        fetch('/log_stop', { method: 'POST' });
-    });
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-16H3MEHP7P');
     </script>
     """,
     unsafe_allow_html=True,
 )
-
-# Endpoint to log the stop time
-import flask
-from flask import Flask, request
-
-app = Flask(__name__)
-
-@app.route('/log_stop', methods=['POST'])
-def log_stop():
-    log_usage('stop', datetime.now())
-    return '', 204
-
-# Run the Flask server
-from threading import Thread
-
-def run_flask():
-    app.run(port=5000)
-
-flask_thread = Thread(target=run_flask)
-flask_thread.start()
