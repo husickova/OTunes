@@ -1,6 +1,5 @@
 import streamlit as st
-import streamlit_analytics2 as StreamlitAnalytics
-
+import streamlit_analytics
 
 # CSS styles to center the text and logo
 st.markdown(
@@ -23,8 +22,10 @@ st.markdown(
 # URL of the logo image
 logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png?raw=true"
 
-# Initialize streamlit-analytics2
-with StreamlitAnalytics() as analytics:
+# Initialize streamlit-analytics
+
+with streamlit_analytics.track():
+    
     # Streamlit interface
     st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
     st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
