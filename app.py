@@ -1,75 +1,96 @@
 import streamlit as st
+import streamlit_analytics
+import datetime
 
-# CSS styles to center the text and logo
-st.markdown(
-    """
-    <style>
-    .center-text {
-        text-align: center;
+# Initialize streamlit-analytics
+with streamlit_analytics.track():
+    # CSS styles to center the text and customize font
+    st.markdown(
+        """
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+        .center-text {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif; /* Customize font family */
+            font-size: 16px; /* Customize font size */
+            text-transform: uppercase; /* Transform text to uppercase */
+        }
+        .title-text {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif; /* Customize font family */
+            font-size: 48px; /* Customize font size for title */
+            font-weight: 700; /* Bold font weight */
+            text-transform: uppercase; /* Transform text to uppercase */
+            margin-top: -50px; /* Reduce top margin */
+        }
+        .subtitle-text {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif; /* Customize font family */
+            font-size: 28px; /* Customize font size for subtitle */
+            text-transform: uppercase; /* Transform text to uppercase */
+        }
+        .red-text {
+            color: red; /* Red color for "O" */
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Streamlit interface
+    st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
+    st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
+    
+    # Selection for genres 
+    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+
+    # Dictionary of playlist URLs and their lengths in seconds
+    playlists = {
+        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "length": 3600},  # example length in seconds
+        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "length": 5400},
+        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "length": 7200},
+        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "length": 4800},
+        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "length": 6000}
     }
-    .center-image {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 60%; /* Increase size by 50% */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
-# URL of the logo image
-logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png?raw=true"
+    # Function to calculate time offset
+    def calculate_time_offset(playlist_length):
+        now = datetime.datetime.now()
+        seconds_since_midnight = (now - now.replace(hour=0, minute=1, second=0, microsecond=0)).total_seconds()
+        loop_offset = int(seconds_since_midnight) % playlist_length
+        return loop_offset
 
-# Streamlit interface
-st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
-st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
-st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
+    # Embed YouTube Music Player based on genre and offset
+    if genre in playlists:
+        playlist_id = playlists[genre]["id"]
+        playlist_length = playlists[genre]["length"]
+        time_offset = calculate_time_offset(playlist_length)
+        
+        # Generate YouTube embed code with a script to control playback
+        playlist_embed_code = f'''
+        <iframe id="ytplayer" type="text/html" width="100%" height="380"
+        src="https://www.youtube.com/embed/videoseries?list={playlist_id}&autoplay=1&enablejsapi=1"
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+        <script>
+        function onYouTubeIframeAPIReady() {{
+            var player = new YT.Player('ytplayer', {{
+                events: {{
+                    'onReady': function(event) {{
+                        event.target.seekTo({time_offset}, true);
+                    }}
+                }}
+            }});
+        }}
 
-# Selection for genres
-genre = st.selectbox('Channels:', ('Choose', 'OTunes POP', 'OTunes ROCK', 'OTunes HIPHOP', 'OTunes ELECTRO', 'OTunes COUNTRY'))
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        </script>
+        '''
 
-if genre == 'OTunes POP':
-    # Embed YouTube Music Player for Pop
-    pop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-&autoplay=1"
-    pop_playlist_embed_code = f'''
-    <iframe width="100%" height="380" src="{pop_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    '''
+        st.markdown(playlist_embed_code, unsafe_allow_html=True)
 
-    st.markdown(pop_playlist_embed_code, unsafe_allow_html=True)
-
-elif genre == 'OTunes ROCK':
-    # Embed YouTube Music Player for Rock
-    rock_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE&autoplay=1"
-    rock_playlist_embed_code = f'''
-    <iframe width="100%" height="380" src="{rock_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    '''
-
-    st.markdown(rock_playlist_embed_code, unsafe_allow_html=True)
-
-elif genre == 'OTunes ELECTRO':
-    # Embed YouTube Music Player for Electro
-    electro_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf&autoplay=1"
-    electro_playlist_embed_code = f'''
-    <iframe width="100%" height="380" src="{electro_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    '''
-
-    st.markdown(electro_playlist_embed_code, unsafe_allow_html=True)
-
-elif genre == 'OTunes HIPHOP':
-    # Embed YouTube Music Player for HipHop
-    hiphop_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4&autoplay=1"
-    hiphop_playlist_embed_code = f'''
-    <iframe width="100%" height="380" src="{hiphop_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    '''
-
-    st.markdown(hiphop_playlist_embed_code, unsafe_allow_html=True)
-
-elif genre == 'OTunes COUNTRY':
-    # Embed YouTube Music Player for Country
-    country_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ&autoplay=1"
-    country_playlist_embed_code = f'''
-    <iframe width="100%" height="380" src="{country_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    '''
-
-    st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
+    st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
