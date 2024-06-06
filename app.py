@@ -1,5 +1,6 @@
 import streamlit as st
-from streamlit_analytics2 import StreamlitAnalytics
+import streamlit_analytics2 as StreamlitAnalytics
+
 
 # CSS styles to center the text and logo
 st.markdown(
