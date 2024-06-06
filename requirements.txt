@@ -1,4 +1,5 @@
 streamlit
-spotipy
 schedule
 flask
+beautifulsoup4
+shutil
