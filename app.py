@@ -33,7 +33,7 @@ st.markdown(
 )
 
 # URL of the logo image
-logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png"
+logo_url = "https://github.com/husickova/OTunes/main/images/logo.png"
 
 # Streamlit interface
 st.markdown(f'<img src="{logo_url}" class="center-text" alt="OTunes Logo" width="200">', unsafe_allow_html=True)
