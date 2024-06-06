@@ -20,12 +20,18 @@ def log_usage(action):
     # Save to CSV
     df.to_csv(LOG_FILE, index=False)
 
-# CSS styles to center the text
+# CSS styles to center the text and logo
 st.markdown(
     """
     <style>
     .center-text {
         text-align: center;
+    }
+    .center-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%; /* Increase size by 50% */
     }
     </style>
     """,
@@ -36,7 +42,7 @@ st.markdown(
 logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png?raw=true"
 
 # Streamlit interface
-st.markdown(f'<img src="{logo_url}" class="center-text" alt="OTunes Logo" width="200">', unsafe_allow_html=True)
+st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
 st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
