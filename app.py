@@ -69,4 +69,7 @@ elif genre == 'OTunes COUNTRY':
     # Embed YouTube Music Player for Country
     country_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ&autoplay=1"
     country_playlist_embed_code = f'''
-    <iframe width="100%" height="380" src="{country_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-m
+    <iframe width="100%" height="380" src="{country_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    '''
+
+    st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
