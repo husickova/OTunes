@@ -4,4 +4,4 @@ import subprocess
 subprocess.run(['python', 'add_ga.py'])
 
 # Run the Streamlit app
-subprocess.run(['streamlit', 'run', 'app.py'])
+subprocess.run(['python', 'app.py'])
