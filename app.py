@@ -14,12 +14,14 @@ with streamlit_analytics.track():
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
             font-size: 18px; /* Customize font size */
+            text-transform: uppercase; /* Transform text to uppercase */
         }
         .title-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 48px; /* Customize font size for title */
+            font-size: 36px; /* Customize font size for title */
             font-weight: 700; /* Bold font weight */
+            text-transform: uppercase; /* Transform text to uppercase */
         }
         .red-text {
             color: red; /* Red color for "O" */
@@ -31,11 +33,11 @@ with streamlit_analytics.track():
 
     # Streamlit interface
     st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 class="center-text">Neverending music channels full of music you love.</h3>', unsafe_allow_html=True)
-    st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
+    st.markdown('<h3 class="center-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE.</h3>', unsafe_allow_html=True)
+    st.markdown('<p class="center-text">CHOOSE YOUR FAVORITE CHANNEL:</p>', unsafe_allow_html=True)
     
     # Selection for genres 
-    genre = st.selectbox('', ('Choose', 'OTunes POP', 'OTunes ROCK', 'OTunes HIPHOP', 'OTunes ELECTRO', 'OTunes COUNTRY'))
+    genre = st.selectbox('', ('CHOOSE', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Function to calculate time offset
     def calculate_time_offset():
@@ -48,11 +50,11 @@ with streamlit_analytics.track():
 
     # Dictionary of playlist URLs
     playlists = {
-        'OTunes POP': "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
-        'OTunes ROCK': "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
-        'OTunes ELECTRO': "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
-        'OTunes HIPHOP': "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4",
-        'OTunes COUNTRY': "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ"
+        'OTUNES POP': "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
+        'OTUNES ROCK': "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
+        'OTUNES ELECTRO': "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
+        'OTUNES HIPHOP': "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4",
+        'OTUNES COUNTRY': "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ"
     }
 
     # Embed YouTube Music Player based on genre and offset
@@ -64,4 +66,4 @@ with streamlit_analytics.track():
 
         st.markdown(playlist_embed_code, unsafe_allow_html=True)
 
-    st.markdown('<p class="center-text">School project at DAB/VŠE Prague for TV Óčko.</p>', unsafe_allow_html=True)
+    st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO.</p>', unsafe_allow_html=True)
