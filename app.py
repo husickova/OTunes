@@ -57,7 +57,7 @@ with streamlit_analytics.track():
     # Function to calculate time offset
     def calculate_time_offset(playlist_length):
         now = datetime.datetime.now()
-        seconds_since_midnight = (now - now.replace(hour=0, minute=1, second=0, microsecond=0)).total_seconds()
+        seconds_since_midnight = (now - now.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
         loop_offset = int(seconds_since_midnight) % playlist_length
         return loop_offset
 
@@ -70,7 +70,7 @@ with streamlit_analytics.track():
         # Generate YouTube embed code with a script to control playback
         playlist_embed_code = f'''
         <iframe id="ytplayer" type="text/html" width="100%" height="380"
-        src="https://www.youtube.com/embed/videoseries?list={playlist_id}&autoplay=1&enablejsapi=1"
+        src="https://www.youtube.com/embed/videoseries?list={playlist_id}&start={time_offset}&autoplay=1"
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
         <script>
