@@ -23,6 +23,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Display current directory
+        run: pwd
+
+      - name: List files in current directory before running Streamlit
+        run: ls -la
+
       - name: Run Streamlit
         run: |
           streamlit run app.py  # nahraďte 'app.py' názvem vašeho skriptu
+
+      - name: List files in current directory after running Streamlit
+        run: ls -la
