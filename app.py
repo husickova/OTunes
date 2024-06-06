@@ -32,8 +32,11 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# URL of the logo image
+logo_url = "https://raw.githubusercontent.com/your-username/your-repository/main/images/logo.png"
+
 # Streamlit interface
-st.markdown('<h1 class="center-text">OTunes</h1>', unsafe_allow_html=True)
+st.markdown(f'<img src="{logo_url}" class="center-text" alt="OTunes Logo" width="200">', unsafe_allow_html=True)
 st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
 
