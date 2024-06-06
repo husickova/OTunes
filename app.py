@@ -74,18 +74,3 @@ elif genre == 'OTunes COUNTRY':
 
     st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
 
-# Add Google Analytics
-st.markdown(
-    """
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-16H3MEHP7P');
-    </script>
-    """,
-    unsafe_allow_html=True,
-)
