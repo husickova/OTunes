@@ -55,3 +55,5 @@ if genre in playlists:
     '''
 
     st.markdown(playlist_embed_code, unsafe_allow_html=True)
+
+st.markdown('<p class="center-text">School project at the University of Economics (Prague) in program "Data and Business Analytics" for TV Očko.</p>', unsafe_allow_html=True)
