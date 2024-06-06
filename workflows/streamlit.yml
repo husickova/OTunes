@@ -3,7 +3,7 @@ name: Streamlit Analytics
 on:
   push:
     branches:
-      - main  # nebo jakákoliv jiná větev, kterou používáte
+      - main3-s-sa2  # nebo jakákoliv jiná větev, kterou používáte
 
 jobs:
   streamlit:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8  # zvolte verzi Pythonu, kterou používáte
+          python-version: 3.11  # zvolte verzi Pythonu, kterou používáte
 
       - name: Install dependencies
         run: |
@@ -25,4 +25,4 @@ jobs:
 
       - name: Run Streamlit
         run: |
-          streamlit run your_script.py  # nahraďte 'your_script.py' názvem vašeho skriptu
+          streamlit run app.py  # nahraďte 'your_script.py' názvem vašeho skriptu
