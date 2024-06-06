@@ -31,7 +31,7 @@ with streamlit_analytics.track():
 
     # Streamlit interface
     st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
-    st.markdown('<h3 class="center-text">Neverending music channels full of music you love.</h3>', unsafe_allow_html=True)
+    st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
     st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
     
     # Selection for genres 
