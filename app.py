@@ -8,9 +8,11 @@ with streamlit_analytics.track():
     st.markdown(
         """
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
         .center-text {
             text-align: center;
-            font-family: Open Sans; /* Customize font family */
+            font-family: 'Open Sans'; /* Customize font family */
             font-size: 18px; /* Customize font size */
         }
         .center-image {
