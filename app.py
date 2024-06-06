@@ -13,21 +13,21 @@ with streamlit_analytics.track():
         .center-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 2vw; /* Responsive font size */
+            font-size: 16px; /* Customize font size */
             text-transform: uppercase; /* Transform text to uppercase */
         }
         .title-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 6vw; /* Responsive font size for title */
+            font-size: 48px; /* Customize font size for title */
             font-weight: 700; /* Bold font weight */
             text-transform: uppercase; /* Transform text to uppercase */
-            margin-top: -2vw; /* Reduce top margin */
+            margin-top: -50px; /* Reduce top margin */
         }
         .subtitle-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 4vw; /* Responsive font size for subtitle */
+            font-size: 28px; /* Customize font size for subtitle */
             text-transform: uppercase; /* Transform text to uppercase */
         }
         .red-text {
