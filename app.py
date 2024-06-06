@@ -23,7 +23,6 @@ st.markdown(
 # URL of the logo image
 logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png?raw=true"
 
-with streamlit_analytics.track():
 # Streamlit interface
 st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
 st.markdown('<h3 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
