@@ -19,7 +19,7 @@ with streamlit_analytics.track():
         .title-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 36px; /* Customize font size for title */
+            font-size: 48px; /* Customize font size for title */
             font-weight: 700; /* Bold font weight */
             text-transform: uppercase; /* Transform text to uppercase */
         }
@@ -33,7 +33,7 @@ with streamlit_analytics.track():
 
     # Streamlit interface
     st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 class="center-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE.</h3>', unsafe_allow_html=True)
+    st.markdown('<h2 class="center-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE.</h2>', unsafe_allow_html=True)
     st.markdown('<p class="center-text">CHOOSE YOUR FAVORITE CHANNEL:</p>', unsafe_allow_html=True)
     
     # Selection for genres 
