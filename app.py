@@ -18,7 +18,7 @@ with streamlit_analytics.track():
         .title-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 36px; /* Customize font size for title */
+            font-size: 48px; /* Customize font size for title */
             font-weight: 700; /* Bold font weight */
         }
         .red-text {
