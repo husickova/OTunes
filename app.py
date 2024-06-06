@@ -49,7 +49,7 @@ playlists = {
 
 # Embed YouTube Music Player based on genre and offset
 if genre in playlists:
-    playlist_url = f"https://www.youtube.com/embed?listType=playlist&list={playlists[genre]}&start={time_offset}&autoplay=1"
+    playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlists[genre]}&start={time_offset}&autoplay=1"
     playlist_embed_code = f'''
     <iframe width="100%" height="380" src="{playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     '''
