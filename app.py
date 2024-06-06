@@ -40,10 +40,9 @@ with streamlit_analytics.track():
     # Streamlit interface
     st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE.</h2>', unsafe_allow_html=True)
-    st.markdown('<p class="center-text">CHOOSE YOUR FAVORITE CHANNEL:</p>', unsafe_allow_html=True)
     
     # Selection for genres 
-    genre = st.selectbox('', ('CHOOSE', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Function to calculate time offset
     def calculate_time_offset():
