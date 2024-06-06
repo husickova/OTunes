@@ -21,13 +21,16 @@ with streamlit_analytics.track():
             font-size: 36px; /* Customize font size for title */
             font-weight: 700; /* Bold font weight */
         }
+        .red-text {
+            color: red; /* Red color for "O" */
+        }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
     # Streamlit interface
-    st.markdown('<h1 class="title-text">OTUNES</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
     st.markdown('<h3 class="center-text">Neverending music channels full of music you love.</h3>', unsafe_allow_html=True)
     st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
     
