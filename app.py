@@ -1,8 +1,5 @@
 import streamlit as st
 import streamlit_analytics
-import os
-import json
-from datetime import datetime
 
 # CSS styles to center the text and logo
 st.markdown(
@@ -26,10 +23,9 @@ st.markdown(
 logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png?raw=true"
 
 # Initialize streamlit-analytics
-with streamlit_analytics.track():
-    # Začátek relace
-    session_start = datetime.now()
 
+with streamlit_analytics.track():
+    
     # Streamlit interface
     st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
     st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
@@ -82,29 +78,3 @@ with streamlit_analytics.track():
         '''
 
         st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
-
-    # Konec relace
-    session_end = datetime.now()
-    session_duration = (session_end - session_start).total_seconds()
-    
-    # Zápis do souboru streamlit-analytics.json
-    analytics_data = {
-        'session_start': session_start.isoformat(),
-        'session_end': session_end.isoformat(),
-        'session_duration': session_duration,
-        'genre': genre
-    }
-
-    if os.path.exists('streamlit-analytics.json'):
-        with open('streamlit-analytics.json', 'r') as file:
-            data = json.load(file)
-    else:
-        data = []
-
-    data.append(analytics_data)
-
-    with open('streamlit-analytics.json', 'w') as file:
-        json.dump(data, file)
-
-    # Zobrazit čas strávený na stránce
-    st.write(f"Čas strávený na stránce: {session_duration} sekund")
