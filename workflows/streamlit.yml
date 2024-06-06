@@ -1,0 +1,28 @@
+name: Streamlit Analytics
+
+on:
+  push:
+    branches:
+      - main  # nebo jakákoliv jiná větev, kterou používáte
+
+jobs:
+  streamlit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8  # zvolte verzi Pythonu, kterou používáte
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install streamlit streamlit-analytics2
+
+      - name: Run Streamlit
+        run: |
+          streamlit run your_script.py  # nahraďte 'your_script.py' názvem vašeho skriptu
