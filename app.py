@@ -78,3 +78,5 @@ with streamlit_analytics.track():
         '''
 
         st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
+
+streamlit_analytics.stop_tracking()
