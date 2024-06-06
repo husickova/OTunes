@@ -22,6 +22,7 @@ with streamlit_analytics.track():
             font-size: 48px; /* Customize font size for title */
             font-weight: 700; /* Bold font weight */
             text-transform: uppercase; /* Transform text to uppercase */
+            margin-top: -50px; /* Reduce top margin */
         }
         .subtitle-text {
             text-align: center;
