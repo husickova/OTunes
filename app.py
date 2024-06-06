@@ -1,4 +1,30 @@
 import streamlit as st
+import pandas as pd
+from datetime import datetime
+
+# Define the path to the log file
+LOG_FILE = 'usage_log.csv'
+
+# Function to log usage data
+def log_usage(action, timestamp=None):
+    if action not in ['start', 'stop']:
+        return
+    # Use the provided timestamp or get the current time
+    if timestamp is None:
+        timestamp = datetime.now()
+    # Load existing data
+    try:
+        df = pd.read_csv(LOG_FILE)
+    except FileNotFoundError:
+        df = pd.DataFrame(columns=['timestamp', 'action'])
+    # Append new data
+    new_data = pd.DataFrame({'timestamp': [timestamp], 'action': [action]})
+    df = pd.concat([df, new_data], ignore_index=True)
+    # Save to CSV
+    df.to_csv(LOG_FILE, index=False)
+
+# Log the start time when the user opens the app
+log_usage('start')
 
 # CSS styles to center the text and logo
 st.markdown(
@@ -73,3 +99,17 @@ elif genre == 'OTunes COUNTRY':
     '''
 
     st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
+
+# Add Google Analytics
+st.markdown(
+    """
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    """,
+    unsafe_allow_html=True,
+)
