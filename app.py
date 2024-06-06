@@ -26,8 +26,7 @@ logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png?raw=tr
 st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
 st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
 st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
-
-# Selection for genres without the label "Channels"
+# Selection for genres 
 genre = st.selectbox('', ('Choose', 'OTunes POP', 'OTunes ROCK', 'OTunes HIPHOP', 'OTunes ELECTRO', 'OTunes COUNTRY'))
 
 # Function to calculate time offset
