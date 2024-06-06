@@ -1,7 +1,7 @@
-import subprocess
+import os
 
 # Run the add_ga.py script
-subprocess.run(['python', 'add_ga.py'])
+os.system('python add_ga.py')
 
 # Run the Streamlit app
-subprocess.run(['streamlit', 'run', 'app.py'])
+os.system('streamlit run app.py')
