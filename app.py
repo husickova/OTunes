@@ -1,21 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
-
-# Add Google Analytics using components.html
-components.html(
-    """
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-16H3MEHP7P');
-    </script>
-    """,
-    height=0,
-)
 
 # CSS styles to center the text and logo
 st.markdown(
@@ -86,8 +69,4 @@ elif genre == 'OTunes COUNTRY':
     # Embed YouTube Music Player for Country
     country_playlist_url = "https://www.youtube.com/embed?listType=playlist&list=PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ&autoplay=1"
     country_playlist_embed_code = f'''
-    <iframe width="100%" height="380" src="{country_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    '''
-
-    st.markdown(country_playlist_embed_code, unsafe_allow_html=True)
-
+    <iframe width="100%" height="380" src="{country_playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-m
