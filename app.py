@@ -4,7 +4,7 @@ import datetime
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
-    # CSS styles to center the text, logo, and customize font
+    # CSS styles to center the text and customize font
     st.markdown(
         """
         <style>
@@ -12,26 +12,23 @@ with streamlit_analytics.track():
 
         .center-text {
             text-align: center;
-            font-family: 'Open Sans'; /* Customize font family */
+            font-family: 'Open Sans', sans-serif; /* Customize font family */
             font-size: 18px; /* Customize font size */
         }
-        .center-image {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 60%; /* Increase size by 50% */
+        .title-text {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif; /* Customize font family */
+            font-size: 36px; /* Customize font size for title */
+            font-weight: 700; /* Bold font weight */
         }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-    # URL of the logo image
-    logo_url = "https://github.com/husickova/OTunes/blob/main/images/logo.png?raw=true"
-
     # Streamlit interface
-    st.markdown(f'<img src="{logo_url}" class="center-image" alt="OTunes Logo">', unsafe_allow_html=True)
-    st.markdown('<h2 class="center-text">Neverending music channels full of music you love.</h2>', unsafe_allow_html=True)
+    st.markdown('<h1 class="title-text">OTUNES</h1>', unsafe_allow_html=True)
+    st.markdown('<h3 class="center-text">Neverending music channels full of music you love.</h3>', unsafe_allow_html=True)
     st.markdown('<p class="center-text">Choose your favorite channel:</p>', unsafe_allow_html=True)
     
     # Selection for genres 
