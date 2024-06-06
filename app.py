@@ -13,7 +13,7 @@ with streamlit_analytics.track():
         .center-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 18px; /* Customize font size */
+            font-size: 16px; /* Customize font size */
             text-transform: uppercase; /* Transform text to uppercase */
         }
         .title-text {
@@ -26,7 +26,7 @@ with streamlit_analytics.track():
         .subtitle-text {
             text-align: center;
             font-family: 'Open Sans', sans-serif; /* Customize font family */
-            font-size: 32px; /* Customize font size for subtitle */
+            font-size: 28px; /* Customize font size for subtitle */
             text-transform: uppercase; /* Transform text to uppercase */
         }
         .red-text {
