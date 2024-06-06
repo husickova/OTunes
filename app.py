@@ -45,27 +45,28 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Function to calculate time offset
-    def calculate_time_offset():
-        now = datetime.datetime.now()
-        seconds_since_midnight = (now - now.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
-        return int(seconds_since_midnight)
-
-    # Calculate offset
-    time_offset = calculate_time_offset()
-
-    # Dictionary of playlist URLs
+    # Dictionary of playlist URLs and their lengths in seconds
     playlists = {
-        'OTUNES POP': "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
-        'OTUNES ROCK': "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
-        'OTUNES ELECTRO': "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
-        'OTUNES HIPHOP': "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4",
-        'OTUNES COUNTRY': "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ"
+        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "length": 3600},  # example length in seconds
+        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "length": 5400},
+        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "length": 7200},
+        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "length": 4800},
+        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "length": 6000}
     }
+
+    # Function to calculate time offset
+    def calculate_time_offset(playlist_length):
+        now = datetime.datetime.now()
+        seconds_since_midnight = (now - now.replace(hour=0, minute=1, second=0, microsecond=0)).total_seconds()
+        loop_offset = int(seconds_since_midnight) % playlist_length
+        return loop_offset
 
     # Embed YouTube Music Player based on genre and offset
     if genre in playlists:
-        playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlists[genre]}&start={time_offset}&autoplay=1"
+        playlist_id = playlists[genre]["id"]
+        playlist_length = playlists[genre]["length"]
+        time_offset = calculate_time_offset(playlist_length)
+        playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&start={time_offset}&autoplay=1"
         playlist_embed_code = f'''
         <iframe width="100%" height="380" src="{playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
