@@ -205,7 +205,7 @@ with streamlit_analytics.track():
         if video_index >= len(playlist["videos"]):
             video_index = len(playlist["videos"]) - 1
         video_id = playlist["videos"][video_index]["id"]
-        video_url = f"https://www.youtube.com/watch?v={video_id}&list={playlist['id']}&index={video_index}"
+        video_url = f"https://www.youtube.com/watch?v={video_id}&list={playlist['id']}&index={video_index+1}"
 
         st.markdown(f"Current hour: {current_hour}")
         st.markdown(f"Playing video index: {video_index}")
