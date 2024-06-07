@@ -45,26 +45,46 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Dictionary of playlist video URLs and lengths in seconds
+    # Dictionary of playlist video URLs
     playlists = {
-        'OTUNES POP': "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
-        'OTUNES ROCK': "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
-        'OTUNES ELECTRO': "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
-        'OTUNES HIPHOP': "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF&si=-MNML2mnfrmftrc2",
-        'OTUNES COUNTRY': "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ"
+        'OTUNES POP': [
+            {"id": "dQw4w9WgXcQ", "title": "Rick Astley - Never Gonna Give You Up"},
+            {"id": "3JZ_D3ELwOQ", "title": "Michael Jackson - Beat It"},
+            {"id": "M3mJkSqZbX4", "title": "Bon Jovi - Livin' on a Prayer"}
+        ],
+        'OTUNES ROCK': [
+            {"id": "s6b33PTbGxk", "title": "Queen - We Will Rock You"},
+            {"id": "3f3K2sEHuIM", "title": "AC/DC - Thunderstruck"},
+            {"id": "fJ9rUzIMcZQ", "title": "Queen - Bohemian Rhapsody"}
+        ],
+        'OTUNES ELECTRO': [
+            {"id": "2vjPBrBU-TM", "title": "Avicii - Wake Me Up"},
+            {"id": "fJ9rUzIMcZQ", "title": "Daft Punk - One More Time"},
+            {"id": "LsoLEjrDogU", "title": "Calvin Harris - Summer"}
+        ],
+        'OTUNES HIPHOP': [
+            {"id": "fPO76Jlnz6c", "title": "Tupac - California Love"},
+            {"id": "3eOuK-pYhy4", "title": "Dr. Dre - Still D.R.E."},
+            {"id": "hHUbLv4ThOo", "title": "Snoop Dogg - Drop It Like It's Hot"}
+        ],
+        'OTUNES COUNTRY': [
+            {"id": "CjxugyZCfuw", "title": "Billy Ray Cyrus - Achy Breaky Heart"},
+            {"id": "5L6xyaeiV58", "title": "Dolly Parton - Jolene"},
+            {"id": "DJ6Ggs8fs8g", "title": "Johnny Cash - Ring of Fire"}
+        ]
     }
 
-    # User input for video index
-    video_index = st.number_input('Enter the index of the video to play:', min_value=0, value=0)
-
-    # Embed YouTube Music Player based on genre and user input index
-    if genre in playlists:
-        playlist_id = playlists[genre]
-        video_url = f"https://www.youtube.com/embed?listType=playlist&list={playlist_id}&index={video_index}"
-
-        st.markdown(f"Playing video index: {video_index}")
-        st.markdown(f"Video URL: {video_url}")
-
-        st_player(video_url)
+    # User input for video selection
+    if genre != 'CHOOSE YOUR FAVORITE CHANNEL:':
+        video_options = playlists[genre]
+        video_titles = [video["title"] for video in video_options]
+        video_choice = st.selectbox('Choose a video to play:', video_titles)
+        
+        selected_video = next((video for video in video_options if video["title"] == video_choice), None)
+        
+        if selected_video:
+            video_url = f"https://www.youtube.com/watch?v={selected_video['id']}"
+            st.markdown(f"Playing video: {selected_video['title']}")
+            st_player(video_url)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
