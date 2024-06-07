@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit_analytics
+import streamlit_analytics2 as streamlit_analytics
 import random
 
 # Initialize streamlit-analytics
