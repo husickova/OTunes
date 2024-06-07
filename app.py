@@ -49,19 +49,24 @@ with streamlit_analytics.track():
     # Dictionary of playlist video URLs and lengths in seconds
     playlists = {
         'OTUNES POP': {
-            "id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-"
+            "id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
+            "lengths": [210, 180, 240, 230, 250, 220, 300, 260, 280, 270, 310, 290, 250, 330, 240, 260, 230, 300, 310, 280, 270, 220, 290, 320]
         },
         'OTUNES ROCK': {
-            "id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE"
+            "id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
+            "lengths": [250, 260, 240, 220, 300, 220, 300, 260, 280, 270, 310, 290, 250, 330, 240, 260, 230, 300, 310, 280, 270, 220, 290, 320]
         },
         'OTUNES ELECTRO': {
-            "id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf"
+            "id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
+            "lengths": [300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310]
         },
         'OTUNES HIPHOP': {
-            "id": "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF&si=-MNML2mnfrmftrc2"
+            "id": "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF&si=-MNML2mnfrmftrc2",
+            "lengths": [260, 270, 280, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310]
         },
         'OTUNES COUNTRY': {
-            "id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ"
+            "id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ",
+            "lengths": [240, 230, 220, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310, 300, 320, 310]
         }
     }
 
@@ -69,10 +74,17 @@ with streamlit_analytics.track():
     current_hour = datetime.datetime.now().hour
     video_index = current_hour * 10  # Calculate the video index based on the hour
 
+    # Ensure video index is within bounds
+    if video_index >= len(playlists[genre]['lengths']):
+        video_index = len(playlists[genre]['lengths']) - 1
+
+    # Calculate start time for the playlist
+    start_time = sum(playlists[genre]['lengths'][:video_index])
+
     # Embed YouTube Music Player based on genre and current hour
     if genre in playlists:
         playlist_id = playlists[genre]["id"]
-        video_url = f"https://www.youtube.com/embed?listType=playlist&list={playlist_id}&index={video_index}"
+        video_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&start={start_time}"
 
         st.markdown(f"Current hour: {current_hour}")
         st.markdown(f"Playing video index: {video_index}")
