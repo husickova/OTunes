@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
+import datetime
 from streamlit_player import st_player
 
 # Initialize streamlit-analytics
@@ -45,7 +46,7 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Dictionary of playlist video URLs
+    # Dictionary of playlist video URLs and lengths in seconds
     playlists = {
         'OTUNES POP': [
             {"id": "dQw4w9WgXcQ", "title": "Rick Astley - Never Gonna Give You Up"},
@@ -74,17 +75,21 @@ with streamlit_analytics.track():
         ]
     }
 
-    # User input for video selection
-    if genre != 'CHOOSE YOUR FAVORITE CHANNEL:':
-        video_options = playlists[genre]
-        video_titles = [video["title"] for video in video_options]
-        video_choice = st.selectbox('Choose a video to play:', video_titles)
-        
-        selected_video = next((video for video in video_options if video["title"] == video_choice), None)
-        
-        if selected_video:
-            video_url = f"https://www.youtube.com/watch?v={selected_video['id']}"
-            st.markdown(f"Playing video: {selected_video['title']}")
-            st_player(video_url)
+    # Get current hour
+    current_hour = datetime.datetime.now().hour
+
+    # Embed YouTube Music Player based on genre and current hour
+    if genre in playlists:
+        playlist = playlists[genre]
+        video_index = current_hour % len(playlist)  # Ensure the index is within the playlist range
+        selected_video = playlist[video_index]
+        video_url = f"https://www.youtube.com/watch?v={selected_video['id']}"
+
+        st.markdown(f"Current hour: {current_hour}")
+        st.markdown(f"Playing video index: {video_index}")
+        st.markdown(f"Playing video: {selected_video['title']}")
+        st.markdown(f"Video URL: {video_url}")
+
+        st_player(video_url)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
