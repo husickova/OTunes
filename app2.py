@@ -1,6 +1,8 @@
+# verze kde se snažím aby to spustilo song v playlistu podle toho kolik je hodin, která v tom funguje blbě, ale pustí aspoň první song v random sekundě
+
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
-import datetime
+import random
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -52,8 +54,7 @@ with streamlit_analytics.track():
             "videos": [
                 {"id": "dQw4w9WgXcQ", "length": 210},
                 {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                # Add more videos as needed
+                {"id": "M3mJkSqZbX4", "length": 240}
             ]
         },
         'OTUNES ROCK': {
@@ -61,8 +62,7 @@ with streamlit_analytics.track():
             "videos": [
                 {"id": "s6b33PTbGxk", "length": 250},
                 {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                # Add more videos as needed
+                {"id": "fJ9rUzIMcZQ", "length": 240}
             ]
         },
         'OTUNES ELECTRO': {
@@ -70,8 +70,7 @@ with streamlit_analytics.track():
             "videos": [
                 {"id": "2vjPBrBU-TM", "length": 300},
                 {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                # Add more videos as needed
+                {"id": "LsoLEjrDogU", "length": 310}
             ]
         },
         'OTUNES HIPHOP': {
@@ -79,8 +78,7 @@ with streamlit_analytics.track():
             "videos": [
                 {"id": "fPO76Jlnz6c", "length": 260},
                 {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                # Add more videos as needed
+                {"id": "hHUbLv4ThOo", "length": 280}
             ]
         },
         'OTUNES COUNTRY': {
@@ -88,23 +86,28 @@ with streamlit_analytics.track():
             "videos": [
                 {"id": "CjxugyZCfuw", "length": 240},
                 {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                # Add more videos as needed
+                {"id": "DJ6Ggs8fs8g", "length": 220}
             ]
         }
     }
 
-    # Function to select video based on current time
-    def get_video_by_time(videos):
-        current_hour = datetime.datetime.now().hour
-        video_index = min(current_hour, len(videos) - 1)
-        return videos[video_index]
+    # Function to calculate random video and offset
+    def calculate_random_video_and_offset(videos):
+        total_length = sum(video["length"] for video in videos)
+        random_offset = random.randint(0, total_length - 1)
+        cumulative_length = 0
 
-    # Embed YouTube Music Player based on genre
+        for video in videos:
+            cumulative_length += video["length"]
+            if cumulative_length > random_offset:
+                start_time = random_offset - (cumulative_length - video["length"])
+                return video["id"], start_time
+
+    # Embed YouTube Music Player based on genre and offset
     if genre in playlists:
         playlist = playlists[genre]
-        video = get_video_by_time(playlist["videos"])
-        video_url = f"https://www.youtube.com/embed/{video['id']}?autoplay=1&list={playlist['id']}"
+        video_id, start_time = calculate_random_video_and_offset(playlist["videos"])
+        video_url = f"https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&list={playlist['id']}"
         video_embed_code = f'''
         <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
