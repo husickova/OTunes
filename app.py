@@ -1,6 +1,5 @@
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
-import datetime
 from streamlit_player import st_player
 
 # Initialize streamlit-analytics
@@ -48,167 +47,21 @@ with streamlit_analytics.track():
 
     # Dictionary of playlist video URLs and lengths in seconds
     playlists = {
-        'OTUNES POP': {
-            "id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
-            "videos": [
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "kxopViU98Xo", "length": 230},
-                {"id": "0rZN6EJxZUk", "length": 250},
-                {"id": "hQ5EWg2-9JI", "length": 220},
-                {"id": "gdZLi9oWNZg", "length": 300},
-                {"id": "OpQFFLBMEPI", "length": 260},
-                {"id": "yRFEKj3Q9YY", "length": 280},
-                {"id": "u6jyAGIIf6k", "length": 270},
-                {"id": "5-sfG8BV8wU", "length": 310},
-                {"id": "6Q5vRoPlQ0k", "length": 290},
-                {"id": "2vMH8lITTCE", "length": 250},
-                {"id": "3J6o_WSkgtI", "length": 330},
-                {"id": "1P17ct4e5OE", "length": 240},
-                {"id": "UceaB4D0jpo", "length": 260},
-                {"id": "CevxZvSJLk8", "length": 230},
-                {"id": "wXhTHyIgQ_U", "length": 300},
-                {"id": "KlyXNRrsk4A", "length": 310},
-                {"id": "uJ_1HMAGb4k", "length": 280},
-                {"id": "IUhlwOzdYKU", "length": 270},
-                {"id": "sCbbMZ-q4-I", "length": 220},
-                {"id": "COjCx3SHDEo", "length": 290},
-                {"id": "yYcyacLRPNs", "length": 320}
-            ]
-        },
-        'OTUNES ROCK': {
-            "id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
-            "videos": [
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "LsoLEjrDogU", "length": 220},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "hQ5EWg2-9JI", "length": 220},
-                {"id": "gdZLi9oWNZg", "length": 300},
-                {"id": "OpQFFLBMEPI", "length": 260},
-                {"id": "yRFEKj3Q9YY", "length": 280},
-                {"id": "u6jyAGIIf6k", "length": 270},
-                {"id": "5-sfG8BV8wU", "length": 310},
-                {"id": "6Q5vRoPlQ0k", "length": 290},
-                {"id": "2vMH8lITTCE", "length": 250},
-                {"id": "3J6o_WSkgtI", "length": 330},
-                {"id": "1P17ct4e5OE", "length": 240},
-                {"id": "UceaB4D0jpo", "length": 260},
-                {"id": "CevxZvSJLk8", "length": 230},
-                {"id": "wXhTHyIgQ_U", "length": 300},
-                {"id": "KlyXNRrsk4A", "length": 310},
-                {"id": "uJ_1HMAGb4k", "length": 280},
-                {"id": "IUhlwOzdYKU", "length": 270},
-                {"id": "sCbbMZ-q4-I", "length": 220},
-                {"id": "COjCx3SHDEo", "length": 290},
-                {"id": "yYcyacLRPNs", "length": 320}
-            ]
-        },
-        'OTUNES ELECTRO': {
-            "id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
-            "videos": [
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310}
-            ]
-        },
-        'OTUNES HIPHOP': {
-            "id": "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF&si=-MNML2mnfrmftrc2",
-            "videos": [
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310}
-            ]
-        },
-        'OTUNES COUNTRY': {
-            "id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ",
-            "videos": [
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "2vjPBrBU-TM", "length": 300},
-                {"id": "fJ9rUzIMcZQ", "length": 320},
-                {"id": "LsoLEjrDogU", "length": 310}
-            ]
-        }
+        'OTUNES POP': "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
+        'OTUNES ROCK': "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
+        'OTUNES ELECTRO': "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
+        'OTUNES HIPHOP': "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF&si=-MNML2mnfrmftrc2",
+        'OTUNES COUNTRY': "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ"
     }
 
-    # Get current hour
-    current_hour = datetime.datetime.now().hour
+    # User input for video index
+    video_index = st.number_input('Enter the index of the video to play:', min_value=0, value=0)
 
-    # Embed YouTube Music Player based on genre and current hour
+    # Embed YouTube Music Player based on genre and user input index
     if genre in playlists:
-        playlist = playlists[genre]
-        video_index = current_hour
-        if video_index >= len(playlist["videos"]):
-            video_index = len(playlist["videos"]) - 1
-        video_id = playlist["videos"][video_index]["id"]
+        playlist_id = playlists[genre]
+        video_url = f"https://www.youtube.com/embed?listType=playlist&list={playlist_id}&index={video_index}"
 
-        video_url = f"https://www.youtube.com/watch?v={video_id}&list={playlist['id']}&index={video_index + 1}"
-
-        st.markdown(f"Current hour: {current_hour}")
         st.markdown(f"Playing video index: {video_index}")
         st.markdown(f"Video URL: {video_url}")
 
