@@ -96,9 +96,18 @@ with streamlit_analytics.track():
 
     # Function to select video based on current time
     def get_video_by_time(videos):
-        current_hour = datetime.datetime.now().hour
-        video_index = min(current_hour, len(videos) - 1)
-        return videos[video_index]
+        current_time = datetime.datetime.now()
+        hour = current_time.hour
+        minute = current_time.minute
+        
+        # Calculate the index of the video to play based on time
+        video_index = hour * 60 + minute
+        
+        # If the index exceeds the number of videos, select the last video
+        if video_index >= len(videos):
+            video_index = len(videos) - 1
+        
+        return videos[video_index % len(videos)]
 
     # Embed YouTube Music Player based on genre
     if genre in playlists:
