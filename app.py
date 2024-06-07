@@ -53,7 +53,8 @@ with streamlit_analytics.track():
                 {"id": "dQw4w9WgXcQ", "length": 210},
                 {"id": "3JZ_D3ELwOQ", "length": 180},
                 {"id": "M3mJkSqZbX4", "length": 240},
-                # Add more videos as needed
+                {"id": "kxopViU98Xo", "length": 230},
+                {"id": "0rZN6EJxZUk", "length": 250}
             ]
         },
         'OTUNES ROCK': {
@@ -62,7 +63,8 @@ with streamlit_analytics.track():
                 {"id": "s6b33PTbGxk", "length": 250},
                 {"id": "3f3K2sEHuIM", "length": 260},
                 {"id": "fJ9rUzIMcZQ", "length": 240},
-                # Add more videos as needed
+                {"id": "0jYKtQrf61s", "length": 220},
+                {"id": "2Uu4fRlZICo", "length": 300}
             ]
         },
         'OTUNES ELECTRO': {
@@ -71,7 +73,8 @@ with streamlit_analytics.track():
                 {"id": "2vjPBrBU-TM", "length": 300},
                 {"id": "fJ9rUzIMcZQ", "length": 320},
                 {"id": "LsoLEjrDogU", "length": 310},
-                # Add more videos as needed
+                {"id": "b4BJGZigbTc", "length": 330},
+                {"id": "G6oN_YxdvP4", "length": 340}
             ]
         },
         'OTUNES HIPHOP': {
@@ -80,7 +83,8 @@ with streamlit_analytics.track():
                 {"id": "fPO76Jlnz6c", "length": 260},
                 {"id": "3eOuK-pYhy4", "length": 270},
                 {"id": "hHUbLv4ThOo", "length": 280},
-                # Add more videos as needed
+                {"id": "6JdDMTVqQlE", "length": 290},
+                {"id": "hRVOOwFNp5U", "length": 300}
             ]
         },
         'OTUNES COUNTRY': {
@@ -89,25 +93,17 @@ with streamlit_analytics.track():
                 {"id": "CjxugyZCfuw", "length": 240},
                 {"id": "5L6xyaeiV58", "length": 230},
                 {"id": "DJ6Ggs8fs8g", "length": 220},
-                # Add more videos as needed
+                {"id": "8A7eqBIlFj4", "length": 210},
+                {"id": "tLgjv89DxTg", "length": 200}
             ]
         }
     }
 
     # Function to select video based on current time
     def get_video_by_time(videos):
-        current_time = datetime.datetime.now()
-        hour = current_time.hour
-        minute = current_time.minute
-        
-        # Calculate the index of the video to play based on time
-        video_index = hour * 60 + minute
-        
-        # If the index exceeds the number of videos, select the last video
-        if video_index >= len(videos):
-            video_index = len(videos) - 1
-        
-        return videos[video_index % len(videos)]
+        current_hour = datetime.datetime.now().hour
+        video_index = current_hour % len(videos)
+        return videos[video_index]
 
     # Embed YouTube Music Player based on genre
     if genre in playlists:
