@@ -53,8 +53,7 @@ with streamlit_analytics.track():
                 {"id": "dQw4w9WgXcQ", "length": 210},
                 {"id": "3JZ_D3ELwOQ", "length": 180},
                 {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "kxopViU98Xo", "length": 230},
-                {"id": "0rZN6EJxZUk", "length": 250}
+                # Přidejte více videí, aby seznam měl více než 24 videí
             ]
         },
         'OTUNES ROCK': {
@@ -63,8 +62,7 @@ with streamlit_analytics.track():
                 {"id": "s6b33PTbGxk", "length": 250},
                 {"id": "3f3K2sEHuIM", "length": 260},
                 {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "0jYKtQrf61s", "length": 220},
-                {"id": "2Uu4fRlZICo", "length": 300}
+                # Přidejte více videí, aby seznam měl více než 24 videí
             ]
         },
         'OTUNES ELECTRO': {
@@ -73,8 +71,7 @@ with streamlit_analytics.track():
                 {"id": "2vjPBrBU-TM", "length": 300},
                 {"id": "fJ9rUzIMcZQ", "length": 320},
                 {"id": "LsoLEjrDogU", "length": 310},
-                {"id": "b4BJGZigbTc", "length": 330},
-                {"id": "G6oN_YxdvP4", "length": 340}
+                # Přidejte více videí, aby seznam měl více než 24 videí
             ]
         },
         'OTUNES HIPHOP': {
@@ -83,8 +80,7 @@ with streamlit_analytics.track():
                 {"id": "fPO76Jlnz6c", "length": 260},
                 {"id": "3eOuK-pYhy4", "length": 270},
                 {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "6JdDMTVqQlE", "length": 290},
-                {"id": "hRVOOwFNp5U", "length": 300}
+                # Přidejte více videí, aby seznam měl více než 24 videí
             ]
         },
         'OTUNES COUNTRY': {
@@ -93,17 +89,18 @@ with streamlit_analytics.track():
                 {"id": "CjxugyZCfuw", "length": 240},
                 {"id": "5L6xyaeiV58", "length": 230},
                 {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "8A7eqBIlFj4", "length": 210},
-                {"id": "tLgjv89DxTg", "length": 200}
+                # Přidejte více videí, aby seznam měl více než 24 videí
             ]
         }
     }
 
-    # Function to select video based on current time
+    # Function to select video based on current hour
     def get_video_by_time(videos):
         current_hour = datetime.datetime.now().hour
-        video_index = current_hour % len(videos)
-        return videos[video_index]
+        if current_hour < len(videos):
+            return videos[current_hour]
+        else:
+            return videos[-1]  # Return the last video if out of index
 
     # Embed YouTube Music Player based on genre
     if genre in playlists:
