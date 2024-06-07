@@ -45,27 +45,25 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Dictionary of playlist URLs, their lengths in seconds, and song lengths
+    # Dictionary of playlist URLs and their video IDs
     playlists = {
-        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "lengths": [210, 180, 240, 200, 220, 230, 250, 210, 200]},  # example lengths in seconds
-        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "lengths": [250, 260, 240, 230, 220, 210, 260, 240, 230]},
-        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "lengths": [300, 320, 310, 290, 310, 300, 330, 310, 320]},
-        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "lengths": [260, 270, 280, 250, 260, 270, 280, 290, 300]},
-        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "lengths": [240, 230, 220, 210, 200, 190, 180, 170, 160]}
+        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "video_ids": ["dQw4w9WgXcQ", "3JZ_D3ELwOQ", "M3mJkSqZbX4"]},  # example video IDs
+        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "video_ids": ["s6b33PTbGxk", "3f3K2sEHuIM", "fJ9rUzIMcZQ"]},
+        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "video_ids": ["2vjPBrBU-TM", "fJ9rUzIMcZQ", "LsoLEjrDogU"]},
+        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "video_ids": ["fPO76Jlnz6c", "3eOuK-pYhy4", "hHUbLv4ThOo"]},
+        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "video_ids": ["CjxugyZCfuw", "5L6xyaeiV58", "DJ6Ggs8fs8g"]}
     }
 
-    # Function to calculate random song offset
-    def calculate_random_song_offset(song_lengths):
-        song_index = random.randint(0, len(song_lengths) - 1)
-        time_offset = sum(song_lengths[:song_index])
-        return time_offset
+    # Function to select random video ID from playlist
+    def get_random_video_id(video_ids):
+        return random.choice(video_ids)
 
-    # Embed YouTube Music Player based on genre and offset
+    # Embed YouTube Music Player based on genre and video ID
     if genre in playlists:
         playlist_id = playlists[genre]["id"]
-        song_lengths = playlists[genre]["lengths"]
-        time_offset = calculate_random_song_offset(song_lengths)
-        playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&start={time_offset}&autoplay=1"
+        video_ids = playlists[genre]["video_ids"]
+        random_video_id = get_random_video_id(video_ids)
+        playlist_url = f"https://www.youtube.com/embed/{random_video_id}?list={playlist_id}&autoplay=1"
         playlist_embed_code = f'''
         <iframe width="100%" height="380" src="{playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
