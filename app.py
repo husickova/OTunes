@@ -45,24 +45,67 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Dictionary of playlist video URLs
+    # Dictionary of playlist video URLs and lengths in seconds
     playlists = {
-        'OTUNES POP': ["dQw4w9WgXcQ", "3JZ_D3ELwOQ", "M3mJkSqZbX4"],  # example video IDs
-        'OTUNES ROCK': ["s6b33PTbGxk", "3f3K2sEHuIM", "fJ9rUzIMcZQ"],
-        'OTUNES ELECTRO': ["2vjPBrBU-TM", "fJ9rUzIMcZQ", "LsoLEjrDogU"],
-        'OTUNES HIPHOP': ["fPO76Jlnz6c", "3eOuK-pYhy4", "hHUbLv4ThOo"],
-        'OTUNES COUNTRY': ["CjxugyZCfuw", "5L6xyaeiV58", "DJ6Ggs8fs8g"]
+        'OTUNES POP': {
+            "id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
+            "videos": [
+                {"id": "dQw4w9WgXcQ", "length": 210},
+                {"id": "3JZ_D3ELwOQ", "length": 180},
+                {"id": "M3mJkSqZbX4", "length": 240}
+            ]
+        },
+        'OTUNES ROCK': {
+            "id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
+            "videos": [
+                {"id": "s6b33PTbGxk", "length": 250},
+                {"id": "3f3K2sEHuIM", "length": 260},
+                {"id": "fJ9rUzIMcZQ", "length": 240}
+            ]
+        },
+        'OTUNES ELECTRO': {
+            "id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
+            "videos": [
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310}
+            ]
+        },
+        'OTUNES HIPHOP': {
+            "id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4",
+            "videos": [
+                {"id": "fPO76Jlnz6c", "length": 260},
+                {"id": "3eOuK-pYhy4", "length": 270},
+                {"id": "hHUbLv4ThOo", "length": 280}
+            ]
+        },
+        'OTUNES COUNTRY': {
+            "id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ",
+            "videos": [
+                {"id": "CjxugyZCfuw", "length": 240},
+                {"id": "5L6xyaeiV58", "length": 230},
+                {"id": "DJ6Ggs8fs8g", "length": 220}
+            ]
+        }
     }
 
-    # Function to select random video ID from playlist
-    def get_random_video_id(video_ids):
-        return random.choice(video_ids)
+    # Function to calculate random video and offset
+    def calculate_random_video_and_offset(videos):
+        total_length = sum(video["length"] for video in videos)
+        random_offset = random.randint(0, total_length - 1)
+        cumulative_length = 0
 
-    # Embed YouTube Music Player based on genre and video ID
+        for video in videos:
+            cumulative_length += video["length"]
+            if cumulative_length > random_offset:
+                start_time = random_offset - (cumulative_length - video["length"])
+                return video["id"], start_time
+
+    # Embed YouTube Music Player based on genre and offset
     if genre in playlists:
-        video_ids = playlists[genre]
-        random_video_id = get_random_video_id(video_ids)
-        video_url = f"https://www.youtube.com/embed/{random_video_id}?autoplay=1"
+        playlist = playlists[genre]
+        video_id, start_time = calculate_random_video_and_offset(playlist["videos"])
+        video_url = f"https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&list={playlist['id']}"
         video_embed_code = f'''
         <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
