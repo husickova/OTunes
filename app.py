@@ -55,17 +55,17 @@ with streamlit_analytics.track():
         'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "length": 6000}
     }
 
-    # Function to calculate random time offset
-    def calculate_random_offset(playlist_length):
-        random_offset = random.randint(0, playlist_length - 1)
-        return random_offset
+    # Function to generate random video index within the playlist
+    def generate_random_index(playlist_length):
+        random_index = random.randint(0, playlist_length - 1)
+        return random_index
 
-    # Embed YouTube Music Player based on genre and offset
+    # Embed YouTube Music Player based on genre and random start index
     if genre in playlists:
         playlist_id = playlists[genre]["id"]
-        playlist_length = playlists[genre]["length"]
-        time_offset = calculate_random_offset(playlist_length)
-        playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&start={time_offset}"
+        playlist_length = len(playlists)  # Example length in seconds (number of videos)
+        random_index = generate_random_index(playlist_length)
+        playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&index={random_index}"
         playlist_embed_code = f'''
         <iframe width="100%" height="380" src="{playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
