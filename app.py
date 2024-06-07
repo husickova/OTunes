@@ -1,6 +1,5 @@
 import streamlit as st
 import streamlit_analytics
-import datetime
 import random
 
 # Initialize streamlit-analytics
@@ -46,25 +45,26 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Dictionary of playlist URLs and their lengths in seconds
+    # Dictionary of playlist URLs, their lengths in seconds, and song lengths
     playlists = {
-        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "length": 3600},  # example length in seconds
-        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "length": 5400},
-        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "length": 7200},
-        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "length": 4800},
-        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "length": 6000}
+        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "lengths": [210, 180, 240, 200, 220, 230, 250, 210, 200]},  # example lengths in seconds
+        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "lengths": [250, 260, 240, 230, 220, 210, 260, 240, 230]},
+        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "lengths": [300, 320, 310, 290, 310, 300, 330, 310, 320]},
+        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "lengths": [260, 270, 280, 250, 260, 270, 280, 290, 300]},
+        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "lengths": [240, 230, 220, 210, 200, 190, 180, 170, 160]}
     }
 
-    # Function to generate random time offset
-    def calculate_random_offset(playlist_length):
-        random_offset = random.randint(0, playlist_length - 1)
-        return random_offset
+    # Function to calculate random song offset
+    def calculate_random_song_offset(song_lengths):
+        song_index = random.randint(0, len(song_lengths) - 1)
+        time_offset = sum(song_lengths[:song_index])
+        return time_offset
 
     # Embed YouTube Music Player based on genre and offset
     if genre in playlists:
         playlist_id = playlists[genre]["id"]
-        playlist_length = playlists[genre]["length"]
-        time_offset = calculate_random_offset(playlist_length)
+        song_lengths = playlists[genre]["lengths"]
+        time_offset = calculate_random_song_offset(song_lengths)
         playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&start={time_offset}&autoplay=1"
         playlist_embed_code = f'''
         <iframe width="100%" height="380" src="{playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
