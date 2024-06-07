@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit_analytics
+import streamlit_analytics2 as streamlit_analytics
 import datetime
 
 # Initialize streamlit-analytics
@@ -45,52 +45,70 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Dictionary of playlist URLs and their lengths in seconds
+    # Dictionary of playlist video URLs and lengths in seconds
     playlists = {
-        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "length": 3600},  # example length in seconds
-        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "length": 5400},
-        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "length": 7200},
-        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "length": 4800},
-        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "length": 6000}
+        'OTUNES POP': {
+            "id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
+            "videos": [
+                {"id": "dQw4w9WgXcQ", "length": 210},
+                {"id": "3JZ_D3ELwOQ", "length": 180},
+                {"id": "M3mJkSqZbX4", "length": 240},
+                # Add more videos as needed
+            ]
+        },
+        'OTUNES ROCK': {
+            "id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
+            "videos": [
+                {"id": "s6b33PTbGxk", "length": 250},
+                {"id": "3f3K2sEHuIM", "length": 260},
+                {"id": "fJ9rUzIMcZQ", "length": 240},
+                # Add more videos as needed
+            ]
+        },
+        'OTUNES ELECTRO': {
+            "id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
+            "videos": [
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                # Add more videos as needed
+            ]
+        },
+        'OTUNES HIPHOP': {
+            "id": "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF&si=-MNML2mnfrmftrc2",
+            "videos": [
+                {"id": "fPO76Jlnz6c", "length": 260},
+                {"id": "3eOuK-pYhy4", "length": 270},
+                {"id": "hHUbLv4ThOo", "length": 280},
+                # Add more videos as needed
+            ]
+        },
+        'OTUNES COUNTRY': {
+            "id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ",
+            "videos": [
+                {"id": "CjxugyZCfuw", "length": 240},
+                {"id": "5L6xyaeiV58", "length": 230},
+                {"id": "DJ6Ggs8fs8g", "length": 220},
+                # Add more videos as needed
+            ]
+        }
     }
 
-    # Function to calculate time offset
-    def calculate_time_offset(playlist_length):
-        now = datetime.datetime.now()
-        seconds_since_midnight = (now - now.replace(hour=0, minute=1, second=0, microsecond=0)).total_seconds()
-        loop_offset = int(seconds_since_midnight) % playlist_length
-        return loop_offset
+    # Function to select video based on current time
+    def get_video_by_time(videos):
+        current_hour = datetime.datetime.now().hour
+        video_index = min(current_hour, len(videos) - 1)
+        return videos[video_index]
 
-    # Embed YouTube Music Player based on genre and offset
+    # Embed YouTube Music Player based on genre
     if genre in playlists:
-        playlist_id = playlists[genre]["id"]
-        playlist_length = playlists[genre]["length"]
-        time_offset = calculate_time_offset(playlist_length)
-        
-        # Generate YouTube embed code with a script to control playback
-        playlist_embed_code = f'''
-        <iframe id="ytplayer" type="text/html" width="100%" height="380"
-        src="https://www.youtube.com/embed/videoseries?list={playlist_id}&autoplay=1&enablejsapi=1"
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        
-        <script>
-        function onYouTubeIframeAPIReady() {{
-            var player = new YT.Player('ytplayer', {{
-                events: {{
-                    'onReady': function(event) {{
-                        event.target.seekTo({time_offset}, true);
-                    }}
-                }}
-            }});
-        }}
-
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        </script>
+        playlist = playlists[genre]
+        video = get_video_by_time(playlist["videos"])
+        video_url = f"https://www.youtube.com/embed/{video['id']}?autoplay=1&list={playlist['id']}"
+        video_embed_code = f'''
+        <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
 
-        st.markdown(playlist_embed_code, unsafe_allow_html=True)
+        st.markdown(video_embed_code, unsafe_allow_html=True)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
