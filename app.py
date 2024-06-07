@@ -1,3 +1,5 @@
+#umí to poznat kolik je hodin a kolikátý song, ale zase to začne od prvního
+
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
 import datetime
