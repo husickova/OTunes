@@ -209,5 +209,9 @@ with streamlit_analytics.track():
         <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
 
+        st.markdown(f"Current hour: {current_hour}")
+        st.markdown(f"Playing video index: {video_index}")
+        st.markdown(f"Video URL: {video_url}")
+        st.markdown(video_embed_code, unsafe_allow_html=True)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
