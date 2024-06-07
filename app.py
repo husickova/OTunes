@@ -1,6 +1,5 @@
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
-import datetime
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -194,23 +193,15 @@ with streamlit_analytics.track():
         }
     }
 
-    # Get current hour
-    current_hour = datetime.datetime.now().hour
-
-    # Embed YouTube Music Player based on genre and current hour
+    # Embed YouTube Music Player based on selected genre
     if genre in playlists:
         playlist = playlists[genre]
-        video_index = current_hour
-        if video_index >= len(playlist["videos"]):
-            video_index = len(playlist["videos"]) - 1
-        video_id = playlist["videos"][video_index]["id"]
+        video_id = playlist["videos"][0]["id"]
         video_url = f"https://www.youtube.com/embed/{video_id}?autoplay=1&list={playlist['id']}"
         video_embed_code = f'''
         <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
 
-        st.markdown(f"Current hour: {current_hour}")
-        st.markdown(f"Playing video index: {video_index}")
         st.markdown(video_embed_code, unsafe_allow_html=True)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
