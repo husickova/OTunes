@@ -1,27 +1,6 @@
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
 import datetime
-import requests
-import json
-
-# Google Analytics 4 konfigurace
-measurement_id = 'G-ERYGGG3MGS'  # Nahraďte svým měřicím ID
-api_secret = 'kqJ54inxSw2LWiCWDbdmwg'  # Nahraďte svým tajným klíčem
-
-def send_event(name, params):
-    url = f'https://www.google-analytics.com/mp/collect?measurement_id={measurement_id}&api_secret={api_secret}'
-    client_id = '555'  # Můžete dynamicky generovat nebo získat z cookies/session
-    event_data = {
-        "client_id": client_id,
-        "events": [
-            {
-                "name": name,
-                "params": params
-            }
-        ]
-    }
-    response = requests.post(url, data=json.dumps(event_data))
-    return response.status_code, response.text
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -65,10 +44,6 @@ with streamlit_analytics.track():
     
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
-
-    # Odeslání výběru žánru jako událost do GA4
-    if genre != 'CHOOSE YOUR FAVORITE CHANNEL:':
-        send_event('genre_selected', {'genre': genre})
 
     # Dictionary of playlist IDs
     playlists = {
