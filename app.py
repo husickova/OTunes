@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit_analytics
 import datetime
+import random
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -54,18 +55,16 @@ with streamlit_analytics.track():
         'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "length": 6000}
     }
 
-    # Function to calculate time offset
-    def calculate_time_offset(playlist_length):
-        now = datetime.datetime.now()
-        seconds_since_midnight = (now - now.replace(hour=0, minute=1, second=0, microsecond=0)).total_seconds()
-        loop_offset = int(seconds_since_midnight) % playlist_length
-        return loop_offset
+    # Function to calculate random time offset
+    def calculate_random_offset(playlist_length):
+        random_offset = random.randint(0, playlist_length - 1)
+        return random_offset
 
     # Embed YouTube Music Player based on genre and offset
     if genre in playlists:
         playlist_id = playlists[genre]["id"]
         playlist_length = playlists[genre]["length"]
-        time_offset = calculate_time_offset(playlist_length)
+        time_offset = calculate_random_offset(playlist_length)
         playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&start={time_offset}"
         playlist_embed_code = f'''
         <iframe width="100%" height="380" src="{playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
