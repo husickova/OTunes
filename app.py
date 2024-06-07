@@ -1,6 +1,5 @@
 import streamlit as st
 import streamlit_analytics
-import datetime
 import random
 
 # Initialize streamlit-analytics
@@ -46,30 +45,28 @@ with streamlit_analytics.track():
     # Selection for genres 
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
-    # Dictionary of playlist URLs and their lengths in seconds
+    # Dictionary of playlist video URLs
     playlists = {
-        'OTUNES POP': {"id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-", "length": 3600},  # example length in seconds
-        'OTUNES ROCK': {"id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE", "length": 5400},
-        'OTUNES ELECTRO': {"id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf", "length": 7200},
-        'OTUNES HIPHOP': {"id": "PLatjrwfoBSuz-zbfooyidyyiwooJWfSG4", "length": 4800},
-        'OTUNES COUNTRY': {"id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ", "length": 6000}
+        'OTUNES POP': ["dQw4w9WgXcQ", "3JZ_D3ELwOQ", "M3mJkSqZbX4"],  # example video IDs
+        'OTUNES ROCK': ["s6b33PTbGxk", "3f3K2sEHuIM", "fJ9rUzIMcZQ"],
+        'OTUNES ELECTRO': ["2vjPBrBU-TM", "fJ9rUzIMcZQ", "LsoLEjrDogU"],
+        'OTUNES HIPHOP': ["fPO76Jlnz6c", "3eOuK-pYhy4", "hHUbLv4ThOo"],
+        'OTUNES COUNTRY': ["CjxugyZCfuw", "5L6xyaeiV58", "DJ6Ggs8fs8g"]
     }
 
-    # Function to calculate random time offset
-    def calculate_random_offset(playlist_length):
-        random_offset = random.randint(0, playlist_length - 1)
-        return random_offset
+    # Function to select random video ID from playlist
+    def get_random_video_id(video_ids):
+        return random.choice(video_ids)
 
-    # Embed YouTube Music Player based on genre and offset
+    # Embed YouTube Music Player based on genre and video ID
     if genre in playlists:
-        playlist_id = playlists[genre]["id"]
-        playlist_length = playlists[genre]["length"]
-        time_offset = calculate_random_offset(playlist_length)
-        playlist_url = f"https://www.youtube.com/embed/videoseries?list={playlist_id}&start={time_offset}&autoplay=1"
-        playlist_embed_code = f'''
-        <iframe width="100%" height="380" src="{playlist_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        video_ids = playlists[genre]
+        random_video_id = get_random_video_id(video_ids)
+        video_url = f"https://www.youtube.com/embed/{random_video_id}?autoplay=1"
+        video_embed_code = f'''
+        <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
 
-        st.markdown(playlist_embed_code, unsafe_allow_html=True)
+        st.markdown(video_embed_code, unsafe_allow_html=True)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
