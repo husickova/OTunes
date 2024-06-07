@@ -53,27 +53,27 @@ with streamlit_analytics.track():
                 {"id": "dQw4w9WgXcQ", "length": 210},
                 {"id": "3JZ_D3ELwOQ", "length": 180},
                 {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240}
+                {"id": "kxopViU98Xo", "length": 230},
+                {"id": "0rZN6EJxZUk", "length": 250},
+                {"id": "hQ5EWg2-9JI", "length": 220},
+                {"id": "gdZLi9oWNZg", "length": 300},
+                {"id": "OpQFFLBMEPI", "length": 260},
+                {"id": "yRFEKj3Q9YY", "length": 280},
+                {"id": "u6jyAGIIf6k", "length": 270},
+                {"id": "5-sfG8BV8wU", "length": 310},
+                {"id": "6Q5vRoPlQ0k", "length": 290},
+                {"id": "2vMH8lITTCE", "length": 250},
+                {"id": "3J6o_WSkgtI", "length": 330},
+                {"id": "1P17ct4e5OE", "length": 240},
+                {"id": "UceaB4D0jpo", "length": 260},
+                {"id": "CevxZvSJLk8", "length": 230},
+                {"id": "wXhTHyIgQ_U", "length": 300},
+                {"id": "KlyXNRrsk4A", "length": 310},
+                {"id": "uJ_1HMAGb4k", "length": 280},
+                {"id": "IUhlwOzdYKU", "length": 270},
+                {"id": "sCbbMZ-q4-I", "length": 220},
+                {"id": "COjCx3SHDEo", "length": 290},
+                {"id": "yYcyacLRPNs", "length": 320}
             ]
         },
         'OTUNES ROCK': {
@@ -82,27 +82,27 @@ with streamlit_analytics.track():
                 {"id": "s6b33PTbGxk", "length": 250},
                 {"id": "3f3K2sEHuIM", "length": 260},
                 {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240},
-                {"id": "s6b33PTbGxk", "length": 250},
-                {"id": "3f3K2sEHuIM", "length": 260},
-                {"id": "fJ9rUzIMcZQ", "length": 240}
+                {"id": "LsoLEjrDogU", "length": 220},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "hQ5EWg2-9JI", "length": 220},
+                {"id": "gdZLi9oWNZg", "length": 300},
+                {"id": "OpQFFLBMEPI", "length": 260},
+                {"id": "yRFEKj3Q9YY", "length": 280},
+                {"id": "u6jyAGIIf6k", "length": 270},
+                {"id": "5-sfG8BV8wU", "length": 310},
+                {"id": "6Q5vRoPlQ0k", "length": 290},
+                {"id": "2vMH8lITTCE", "length": 250},
+                {"id": "3J6o_WSkgtI", "length": 330},
+                {"id": "1P17ct4e5OE", "length": 240},
+                {"id": "UceaB4D0jpo", "length": 260},
+                {"id": "CevxZvSJLk8", "length": 230},
+                {"id": "wXhTHyIgQ_U", "length": 300},
+                {"id": "KlyXNRrsk4A", "length": 310},
+                {"id": "uJ_1HMAGb4k", "length": 280},
+                {"id": "IUhlwOzdYKU", "length": 270},
+                {"id": "sCbbMZ-q4-I", "length": 220},
+                {"id": "COjCx3SHDEo", "length": 290},
+                {"id": "yYcyacLRPNs", "length": 320}
             ]
         },
         'OTUNES ELECTRO': {
@@ -140,27 +140,27 @@ with streamlit_analytics.track():
                 {"id": "fPO76Jlnz6c", "length": 260},
                 {"id": "3eOuK-pYhy4", "length": 270},
                 {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280},
-                {"id": "fPO76Jlnz6c", "length": 260},
-                {"id": "3eOuK-pYhy4", "length": 270},
-                {"id": "hHUbLv4ThOo", "length": 280}
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310}
             ]
         },
         'OTUNES COUNTRY': {
@@ -169,48 +169,49 @@ with streamlit_analytics.track():
                 {"id": "CjxugyZCfuw", "length": 240},
                 {"id": "5L6xyaeiV58", "length": 230},
                 {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220},
-                {"id": "CjxugyZCfuw", "length": 240},
-                {"id": "5L6xyaeiV58", "length": 230},
-                {"id": "DJ6Ggs8fs8g", "length": 220}
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310},
+                {"id": "2vjPBrBU-TM", "length": 300},
+                {"id": "fJ9rUzIMcZQ", "length": 320},
+                {"id": "LsoLEjrDogU", "length": 310}
             ]
         }
     }
 
-    # Function to select video based on current hour
-    def get_video_by_time(videos):
-        current_hour = datetime.datetime.now().hour
-        if current_hour < len(videos):
-            return videos[current_hour]
-        else:
-            return videos[-1]  # Return the last video if out of index
+    # Get current hour
+    current_hour = datetime.datetime.now().hour
 
-    # Embed YouTube Music Player based on genre
+    # Embed YouTube Music Player based on genre and current hour
     if genre in playlists:
         playlist = playlists[genre]
-        video = get_video_by_time(playlist["videos"])
-        video_url = f"https://www.youtube.com/embed/{video['id']}?autoplay=1&list={playlist['id']}"
+        video_index = current_hour
+        if video_index >= len(playlist["videos"]):
+            video_index = len(playlist["videos"]) - 1
+        video_id = playlist["videos"][video_index]["id"]
+        video_url = f"https://www.youtube.com/embed/{video_id}?autoplay=1&list={playlist['id']}"
         video_embed_code = f'''
         <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
 
+        st.markdown(f"Current hour: {current_hour}")
+        st.markdown(f"Playing video index: {video_index}")
+        st.markdown(f"Video URL: {video_url}")
         st.markdown(video_embed_code, unsafe_allow_html=True)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
