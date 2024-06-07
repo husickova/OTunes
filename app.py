@@ -49,30 +49,7 @@ with streamlit_analytics.track():
         'OTUNES POP': {
             "id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
             "videos": [
-                {"id": "dQw4w9WgXcQ", "length": 210},
-                {"id": "3JZ_D3ELwOQ", "length": 180},
-                {"id": "M3mJkSqZbX4", "length": 240},
-                {"id": "kxopViU98Xo", "length": 230},
-                {"id": "0rZN6EJxZUk", "length": 250},
-                {"id": "hQ5EWg2-9JI", "length": 220},
-                {"id": "gdZLi9oWNZg", "length": 300},
-                {"id": "OpQFFLBMEPI", "length": 260},
-                {"id": "yRFEKj3Q9YY", "length": 280},
-                {"id": "u6jyAGIIf6k", "length": 270},
-                {"id": "5-sfG8BV8wU", "length": 310},
-                {"id": "6Q5vRoPlQ0k", "length": 290},
-                {"id": "2vMH8lITTCE", "length": 250},
-                {"id": "3J6o_WSkgtI", "length": 330},
-                {"id": "1P17ct4e5OE", "length": 240},
-                {"id": "UceaB4D0jpo", "length": 260},
-                {"id": "CevxZvSJLk8", "length": 230},
-                {"id": "wXhTHyIgQ_U", "length": 300},
-                {"id": "KlyXNRrsk4A", "length": 310},
-                {"id": "uJ_1HMAGb4k", "length": 280},
-                {"id": "IUhlwOzdYKU", "length": 270},
-                {"id": "sCbbMZ-q4-I", "length": 220},
-                {"id": "COjCx3SHDEo", "length": 290},
-                {"id": "yYcyacLRPNs", "length": 320}
+                {"id": "9U4-PgbN7eM", "length": 0}  # Length set to 0 because it's not used
             ]
         },
         'OTUNES ROCK': {
