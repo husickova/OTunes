@@ -1,8 +1,7 @@
-#umí to poznat kolik je hodin a kolikátý song, ale zase to začne od prvního
-
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
 import datetime
+from streamlit_player import st_player
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -206,14 +205,12 @@ with streamlit_analytics.track():
         if video_index >= len(playlist["videos"]):
             video_index = len(playlist["videos"]) - 1
         video_id = playlist["videos"][video_index]["id"]
-        video_url = f"https://www.youtube.com/embed/{video_id}?autoplay=1&list={playlist['id']}"
-        video_embed_code = f'''
-        <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        '''
+        video_url = f"https://www.youtube.com/watch?v={video_id}&list={playlist['id']}&index={video_index}"
 
         st.markdown(f"Current hour: {current_hour}")
         st.markdown(f"Playing video index: {video_index}")
         st.markdown(f"Video URL: {video_url}")
-        st.markdown(video_embed_code, unsafe_allow_html=True)
+
+        st_player(video_url)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
