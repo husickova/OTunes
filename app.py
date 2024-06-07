@@ -48,46 +48,34 @@ with streamlit_analytics.track():
 
     # Dictionary of playlist video URLs and lengths in seconds
     playlists = {
-        'OTUNES POP': [
-            {"id": "dQw4w9WgXcQ", "title": "Rick Astley - Never Gonna Give You Up"},
-            {"id": "3JZ_D3ELwOQ", "title": "Michael Jackson - Beat It"},
-            {"id": "M3mJkSqZbX4", "title": "Bon Jovi - Livin' on a Prayer"}
-        ],
-        'OTUNES ROCK': [
-            {"id": "s6b33PTbGxk", "title": "Queen - We Will Rock You"},
-            {"id": "3f3K2sEHuIM", "title": "AC/DC - Thunderstruck"},
-            {"id": "fJ9rUzIMcZQ", "title": "Queen - Bohemian Rhapsody"}
-        ],
-        'OTUNES ELECTRO': [
-            {"id": "2vjPBrBU-TM", "title": "Avicii - Wake Me Up"},
-            {"id": "fJ9rUzIMcZQ", "title": "Daft Punk - One More Time"},
-            {"id": "LsoLEjrDogU", "title": "Calvin Harris - Summer"}
-        ],
-        'OTUNES HIPHOP': [
-            {"id": "fPO76Jlnz6c", "title": "Tupac - California Love"},
-            {"id": "3eOuK-pYhy4", "title": "Dr. Dre - Still D.R.E."},
-            {"id": "hHUbLv4ThOo", "title": "Snoop Dogg - Drop It Like It's Hot"}
-        ],
-        'OTUNES COUNTRY': [
-            {"id": "CjxugyZCfuw", "title": "Billy Ray Cyrus - Achy Breaky Heart"},
-            {"id": "5L6xyaeiV58", "title": "Dolly Parton - Jolene"},
-            {"id": "DJ6Ggs8fs8g", "title": "Johnny Cash - Ring of Fire"}
-        ]
+        'OTUNES POP': {
+            "id": "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-"
+        },
+        'OTUNES ROCK': {
+            "id": "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE"
+        },
+        'OTUNES ELECTRO': {
+            "id": "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf"
+        },
+        'OTUNES HIPHOP': {
+            "id": "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF&si=-MNML2mnfrmftrc2"
+        },
+        'OTUNES COUNTRY': {
+            "id": "PLatjrwfoBSuzQjOKCrPtE6Vbo3rdF1TsZ"
+        }
     }
 
     # Get current hour
     current_hour = datetime.datetime.now().hour
+    video_index = current_hour * 10  # Calculate the video index based on the hour
 
     # Embed YouTube Music Player based on genre and current hour
     if genre in playlists:
-        playlist = playlists[genre]
-        video_index = current_hour % len(playlist)  # Ensure the index is within the playlist range
-        selected_video = playlist[video_index]
-        video_url = f"https://www.youtube.com/watch?v={selected_video['id']}"
+        playlist_id = playlists[genre]["id"]
+        video_url = f"https://www.youtube.com/embed?listType=playlist&list={playlist_id}&index={video_index}"
 
         st.markdown(f"Current hour: {current_hour}")
         st.markdown(f"Playing video index: {video_index}")
-        st.markdown(f"Playing video: {selected_video['title']}")
         st.markdown(f"Video URL: {video_url}")
 
         st_player(video_url)
