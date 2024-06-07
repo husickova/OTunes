@@ -1,6 +1,7 @@
+#čistá verze která neřeší čas a pouští prostě první song
+
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
-import random
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -89,23 +90,11 @@ with streamlit_analytics.track():
         }
     }
 
-    # Function to calculate random video and offset
-    def calculate_random_video_and_offset(videos):
-        total_length = sum(video["length"] for video in videos)
-        random_offset = random.randint(0, total_length - 1)
-        cumulative_length = 0
-
-        for video in videos:
-            cumulative_length += video["length"]
-            if cumulative_length > random_offset:
-                start_time = random_offset - (cumulative_length - video["length"])
-                return video["id"], start_time
-
-    # Embed YouTube Music Player based on genre and offset
+    # Embed YouTube Music Player based on genre
     if genre in playlists:
         playlist = playlists[genre]
-        video_id, start_time = calculate_random_video_and_offset(playlist["videos"])
-        video_url = f"https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&list={playlist['id']}"
+        video_id = playlist["videos"][0]["id"]
+        video_url = f"https://www.youtube.com/embed/{video_id}?autoplay=1&list={playlist['id']}"
         video_embed_code = f'''
         <iframe width="100%" height="380" src="{video_url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         '''
