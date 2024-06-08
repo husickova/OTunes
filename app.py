@@ -47,7 +47,7 @@ with streamlit_analytics.track():
 
     # Dictionary of playlist IDs
     playlists = {
-        'OTUNES POP': "PLatjrwfoBSuxxjxuA4VqoDPhe_bWEGSJ-",
+        'OTUNES POP': "PLatjrwfoBSuwNRRXziQy6F5EZvWLmPKPL",
         'OTUNES ROCK': "PLatjrwfoBSuxGIzdXo07_4-SAe-ZltkNE",
         'OTUNES ELECTRO': "PLatjrwfoBSuz9XAw-X-y5EsF-O62ZrAIf",
         'OTUNES HIPHOP': "PLatjrwfoBSuzzSWGNLKpYmKu7F_vm-VOF",
