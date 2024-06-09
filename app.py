@@ -47,11 +47,11 @@ with streamlit_analytics.track():
 
     # Dictionary of playlist IDs
     playlists = {
-        'OTUNES POP': "PLatjrwfoBSuwNRRXziQy6F5EZvWLmPKPL",
-        'OTUNES ROCK': "PLatjrwfoBSuzcDPmyv6XHJVMqiWeYf09B",
-        'OTUNES ELECTRO': "PLatjrwfoBSuyP0FgMr7oWJ8nn5wAaxu9I",
-        'OTUNES HIPHOP': "PLatjrwfoBSuyOA1LuR36y0brGHKVsDvbq",
-        'OTUNES COUNTRY': "PLatjrwfoBSuxdPaQrzWfRAhQgsNAmvKF4"
+        'OTUNES POP': "PLatjrwfoBSuyTmoyyTTIXZUU1ZpF5dBBR",
+        'OTUNES ROCK': "PLatjrwfoBSuynTvtU_VMg24LnfZ7Q2icD",
+        'OTUNES ELECTRO': "PLatjrwfoBSuxp0YTB4n77ApNaq-xJpvYl",
+        'OTUNES HIPHOP': "PLatjrwfoBSuwufuOh0Ofi3KnpEwRq8i2i",
+        'OTUNES COUNTRY': "PLatjrwfoBSuwbFst7WVhR3XYC1bsw65hx"
     }
 
     # Get current hour
