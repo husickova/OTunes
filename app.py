@@ -11,18 +11,11 @@ components.html(
     """
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Plausible script
+        // Plausible script with tagged events
         var plausibleScript = document.createElement('script');
         plausibleScript.defer = true;
         plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
-        plausibleScript.src = 'https://plausible.io/js/script.js';
-        plausibleScript.onload = function() {
-            console.log('Plausible script loaded successfully');
-        };
-        plausibleScript.onerror = function() {
-            console.error('Error loading Plausible script');
-            alert('Plausible script failed to load. Please check your network settings.');
-        };
+        plausibleScript.src = 'https://plausible.io/js/script.tagged-events.js';
         document.head.appendChild(plausibleScript);
 
         // Statcounter script
@@ -50,25 +43,12 @@ components.html(
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
 
-# JavaScript to track goals with enhanced debugging
+# Add CSS class to the select box to track the events
 track_event_script = """
 <script>
-function trackEvent(event_name) {
-    alert("Sending event: " + event_name); // Debugging alert
-    console.log("Sending event: " + event_name); // Debugging log
-    if (window.plausible) {
-        window.plausible(event_name, {props: {source: 'streamlit'}});
-        console.log("Event sent: " + event_name);
-    } else {
-        console.error("Plausible not loaded");
-    }
-}
-
-// Function to add Plausible event tracking to the select box
 function addPlausibleTracking() {
     const selectBox = document.querySelector('select');
     if (selectBox) {
-        selectBox.setAttribute('plausible-event-name', 'Genre+Selection');
         selectBox.addEventListener('change', function() {
             const selectedOption = selectBox.options[selectBox.selectedIndex].text;
             const eventNameMap = {
@@ -80,7 +60,7 @@ function addPlausibleTracking() {
             };
             const eventName = eventNameMap[selectedOption];
             if (eventName) {
-                trackEvent(eventName);
+                plausible('Genre Selection', { props: { genre: eventName } });
             } else {
                 console.error("Event name mapping not found for: " + selectedOption);
             }
@@ -91,7 +71,6 @@ function addPlausibleTracking() {
     }
 }
 
-// Wait for the DOM to load before adding the tracking
 document.addEventListener('DOMContentLoaded', addPlausibleTracking);
 </script>
 """
