@@ -132,7 +132,7 @@ with streamlit_analytics.track():
         video_index = 149
     elif 21 <= current_hour < 23:
         video_index = 159
-    elif 23 <= current hour < 24:
+    elif 23 <= current_hour < 24:
         video_index = 169
     else:
         video_index = 0
