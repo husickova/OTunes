@@ -47,7 +47,19 @@ function addPlausibleTracking() {
         selectBox.setAttribute('plausible-event-name', 'Genre+Selection');
         selectBox.addEventListener('change', function() {
             const selectedOption = selectBox.options[selectBox.selectedIndex].text;
-            trackEvent(selectedOption.replace(' ', '_'));
+            const eventNameMap = {
+                'OTUNES POP': 'OTUNES_POP',
+                'OTUNES ROCK': 'OTUNES_ROCK',
+                'OTUNES HIPHOP': 'OTUNES_HIPHOP',
+                'OTUNES ELECTRO': 'OTUNES_ELECTRO',
+                'OTUNES COUNTRY': 'OTUNES_COUNTRY'
+            };
+            const eventName = eventNameMap[selectedOption];
+            if (eventName) {
+                trackEvent(eventName);
+            } else {
+                console.error("Event name mapping not found for: " + selectedOption);
+            }
         });
         console.log('Plausible tracking added to select box');
     } else {
@@ -103,7 +115,7 @@ with streamlit_analytics.track():
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
     # Selection for genres
-    genre = st.selectbox('Select a Genre:', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
     playlists = {
