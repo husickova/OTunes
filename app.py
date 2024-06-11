@@ -11,13 +11,17 @@ components.html(
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
 
-# JavaScript to track goals
+# JavaScript to track goals with enhanced debugging
 track_event_script = """
 <script>
 function trackEvent(event_name) {
+    alert("Sending event: " + event_name); // Debugging alert
     console.log("Sending event: " + event_name); // Debugging log
     if (window.plausible) {
-        window.plausible(event_name);
+        window.plausible(event_name, {props: {source: 'streamlit'}});
+        console.log("Event sent: " + event_name);
+    } else {
+        console.error("Plausible not loaded");
     }
 }
 </script>
@@ -66,7 +70,7 @@ with streamlit_analytics.track():
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
     # Selection for genres
-    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    genre = st.selectbox('Select a Genre:', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
     playlists = {
