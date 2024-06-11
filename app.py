@@ -6,18 +6,6 @@ import streamlit.components.v1 as components
 # Set the page configuration
 st.set_page_config(page_title="OTUNES", page_icon="🎵", layout="centered")
 
-# Add custom CSS to style the title
-st.markdown(
-    """
-    <style>
-    .title-text {
-        color: red; /* Set the title text color to red */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
 # Add the Plausible script using components.html to ensure it's added to the document head
 components.html(
     """
@@ -120,13 +108,16 @@ with streamlit_analytics.track():
         .red-text {
             color: red; /* Red color for "O" */
         }
+        .title-text span {
+            color: red; /* Red color for the span inside title-text */
+        }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
     # Streamlit interface
-    st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="title-text"><span>O</span>TUNES</h1>', unsafe_allow_html=True)
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
     # Selection for genres
