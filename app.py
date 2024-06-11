@@ -3,10 +3,13 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 import streamlit.components.v1 as components
 
-# Add the JavaScript snippet
-components.html("""
-<script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
-""", height=0)
+# Add the JavaScript snippet using a markdown
+st.markdown(
+    """
+    <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
+    """,
+    unsafe_allow_html=True
+)
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
