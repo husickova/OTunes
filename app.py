@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 # Add the Plausible script using components.html to ensure it's added to the document head
 components.html(
     """
-    <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+    <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
     """,
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
@@ -24,6 +24,24 @@ function trackEvent(event_name) {
         console.error("Plausible not loaded");
     }
 }
+
+// Function to add Plausible event tracking to the select box
+function addPlausibleTracking() {
+    const selectBox = document.querySelector('select');
+    if (selectBox) {
+        selectBox.setAttribute('plausible-event-name', 'Genre+Selection');
+        selectBox.addEventListener('change', function() {
+            const selectedOption = selectBox.options[selectBox.selectedIndex].text;
+            trackEvent(selectedOption.replace(' ', '_'));
+        });
+        console.log('Plausible tracking added to select box');
+    } else {
+        console.error('Select box not found');
+    }
+}
+
+// Wait for the DOM to load before adding the tracking
+document.addEventListener('DOMContentLoaded', addPlausibleTracking);
 </script>
 """
 
@@ -80,10 +98,6 @@ with streamlit_analytics.track():
         'OTUNES HIPHOP': "PLatjrwfoBSuwufuOh0Ofi3KnpEwRq8i2i",
         'OTUNES COUNTRY': "PLatjrwfoBSuwbFst7WVhR3XYC1bsw65hx"
     }
-
-    # Track genre selection
-    if genre and genre != 'CHOOSE YOUR FAVORITE CHANNEL:':
-        st.markdown(f"<script>trackEvent('{genre.replace(' ', '_')}');</script>", unsafe_allow_html=True)
 
     # Get current hour
     current_hour = datetime.datetime.now().hour
