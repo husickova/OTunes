@@ -3,6 +3,9 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 import streamlit.components.v1 as components
 
+# Set the page configuration
+st.set_page_config(page_title="OTUNES", page_icon="🎵", layout="centered")
+
 # Add the local Plausible script using components.html to ensure it's added to the document head
 components.html(
     """
