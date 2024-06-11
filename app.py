@@ -8,7 +8,7 @@ import streamlit_analytics2 as streamlit_analytics
 
 # Vaše GA4 Measurement ID a API Secret
 GA4_MEASUREMENT_ID = "G-16H3MEHP7P"
-GA4_API_SECRET = "kqJ54inxSw2LWiCWDbdmwg"
+GA4_API_SECRET = "8N13FuHKShWkAwIABZiVtQ"
 
 # Generování unikátního client_id a session_id pro každého uživatele
 if 'client_id' not in st.session_state:
