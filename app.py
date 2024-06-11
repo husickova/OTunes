@@ -1,21 +1,33 @@
 import streamlit as st
+import streamlit_analytics2 as streamlit_analytics
 import datetime
+import streamlit.components.v1 as components
 
-# Streamlit app
-def main():
-    # Load Google Analytics script directly using st.markdown
-    GA_SCRIPT = """
-    <!-- Google tag (gtag.js) -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P'></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-16H3MEHP7P');
-    </script>
+# Add the JavaScript snippet using a markdown
+st.markdown(
     """
-    st.markdown(GA_SCRIPT, unsafe_allow_html=True)
+    <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
+    """,
+    unsafe_allow_html=True
+)
 
+st.markdown(
+    """
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-16H3MEHP7P');
+</script>
+    """,
+    unsafe_allow_html=True
+)
+
+# Initialize streamlit-analytics
+with streamlit_analytics.track():
     # CSS styles to center the text and customize font
     st.markdown(
         """
@@ -38,7 +50,7 @@ def main():
         }
         .subtitle-text {
             text-align: center;
-            font-family: 'Open Open Sans', sans-serif; /* Customize font family */
+            font-family: 'Open Sans', sans-serif; /* Customize font family */
             font-size: 28px; /* Customize font size for subtitle */
             text-transform: uppercase; /* Transform text to uppercase */
         }
@@ -108,6 +120,3 @@ def main():
         st.markdown(video_embed_code, unsafe_allow_html=True)
 
     st.markdown('<p class="center-text">SCHOOL PROJECT AT DAB/VŠE PRAGUE FOR TV ÓČKO</p>', unsafe_allow_html=True)
-
-if __name__ == "__main__":
-    main()
