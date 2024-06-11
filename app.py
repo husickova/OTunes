@@ -11,11 +11,10 @@ components.html(
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
 
-# JavaScript to track goals with debug alert
+# JavaScript to track goals
 track_event_script = """
 <script>
 function trackEvent(event_name) {
-    alert("Sending event: " + event_name); // Debugging alert
     console.log("Sending event: " + event_name); // Debugging log
     if (window.plausible) {
         window.plausible(event_name);
