@@ -4,21 +4,31 @@ import datetime
 from streamlit.components.v1 import html
 
 # Google Analytics Injection
-GA_SCRIPT = """
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-16H3MEHP7P');
-</script>
+GA_HTML = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA Injection</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-16H3MEHP7P');
+    </script>
+</head>
+<body>
+</body>
+</html>
 """
 
 # Streamlit app
 def main():
     # Inject Google Analytics script using Streamlit Components
-    html(GA_SCRIPT, height=0)
+    html(GA_HTML, height=0)
 
     # Initialize streamlit-analytics
     with streamlit_analytics.track():
@@ -98,7 +108,7 @@ def main():
             video_index = 149
         elif 21 <= current_hour < 23:
             video_index = 159
-        elif 23 <= current_hour < 24:
+        elif 23 <= current hour < 24:
             video_index = 169
         else:
             video_index = 0
