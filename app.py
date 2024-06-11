@@ -1,10 +1,9 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import datetime
 
 # Streamlit app
 def main():
-    # Load Google Analytics script directly
+    # Load Google Analytics script directly using st.markdown
     GA_SCRIPT = """
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
@@ -16,7 +15,7 @@ def main():
       gtag('config', 'G-16H3MEHP7P');
     </script>
     """
-    components.html(GA_SCRIPT, height=0)
+    st.markdown(GA_SCRIPT, unsafe_allow_html=True)
 
     # CSS styles to center the text and customize font
     st.markdown(
