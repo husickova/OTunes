@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 # Add the Plausible script using components.html to ensure it's added to the document head
 components.html(
     """
-    <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
+    <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.tagged-events.js"></script>
     """,
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
