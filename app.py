@@ -3,13 +3,27 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 import streamlit.components.v1 as components
 
-# Add the JavaScript snippet using a markdown
-st.markdown(
+# Add the Plausible script using components.html to ensure it's added to the document head
+components.html(
     """
     <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
     """,
-    unsafe_allow_html=True
+    height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
+
+# JavaScript to track goals
+track_event_script = """
+<script>
+function trackEvent(event_name) {
+    console.log("Sending event: " + event_name); // Debugging log
+    if (window.plausible) {
+        window.plausible(event_name);
+    }
+}
+</script>
+"""
+
+st.markdown(track_event_script, unsafe_allow_html=True)
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -51,7 +65,7 @@ with streamlit_analytics.track():
     st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
-    # Selection for genres 
+    # Selection for genres
     genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
@@ -62,6 +76,10 @@ with streamlit_analytics.track():
         'OTUNES HIPHOP': "PLatjrwfoBSuwufuOh0Ofi3KnpEwRq8i2i",
         'OTUNES COUNTRY': "PLatjrwfoBSuwbFst7WVhR3XYC1bsw65hx"
     }
+
+    # Track genre selection
+    if genre and genre != 'CHOOSE YOUR FAVORITE CHANNEL:':
+        st.markdown(f"<script>trackEvent('{genre.replace(' ', '_')}');</script>", unsafe_allow_html=True)
 
     # Get current hour
     current_hour = datetime.datetime.now().hour
