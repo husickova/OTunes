@@ -17,35 +17,39 @@ components.html(
         plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
         plausibleScript.src = 'https://plausible.io/js/script.tagged-events.js';
         document.head.appendChild(plausibleScript);
-    });
+        console.log('Plausible script added');
 
-    // Function to add Plausible event tracking to the select box
-    function addPlausibleTracking() {
-        const selectBox = document.querySelector('select');
-        if (selectBox) {
-            selectBox.addEventListener('change', function() {
-                const selectedOption = selectBox.options[selectBox.selectedIndex].text;
-                const eventNameMap = {
-                    'OTUNES POP': 'OTUNES_POP',
-                    'OTUNES ROCK': 'OTUNES_ROCK',
-                    'OTUNES HIPHOP': 'OTUNES_HIPHOP',
-                    'OTUNES ELECTRO': 'OTUNES_ELECTRO',
-                    'OTUNES COUNTRY': 'OTUNES_COUNTRY'
-                };
-                const eventName = eventNameMap[selectedOption];
-                if (eventName) {
-                    plausible(eventName);
-                } else {
-                    console.error("Event name mapping not found for: " + selectedOption);
-                }
-            });
-            console.log('Plausible tracking added to select box');
-        } else {
-            console.error('Select box not found');
+        // Function to add Plausible event tracking to the select box
+        function addPlausibleTracking() {
+            const selectBox = document.querySelector('select');
+            if (selectBox) {
+                console.log('Select box found');
+                selectBox.addEventListener('change', function() {
+                    const selectedOption = selectBox.options[selectBox.selectedIndex].text;
+                    const eventNameMap = {
+                        'OTUNES POP': 'OTUNES_POP',
+                        'OTUNES ROCK': 'OTUNES_ROCK',
+                        'OTUNES HIPHOP': 'OTUNES_HIPHOP',
+                        'OTUNES ELECTRO': 'OTUNES_ELECTRO',
+                        'OTUNES COUNTRY': 'OTUNES_COUNTRY'
+                    };
+                    const eventName = eventNameMap[selectedOption];
+                    if (eventName) {
+                        console.log("Sending event to Plausible: " + eventName);
+                        alert("Sending event: " + eventName); // Debugging alert
+                        plausible(eventName);
+                    } else {
+                        console.error("Event name mapping not found for: " + selectedOption);
+                    }
+                });
+                console.log('Plausible tracking added to select box');
+            } else {
+                console.error('Select box not found');
+            }
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', addPlausibleTracking);
+        document.addEventListener('DOMContentLoaded', addPlausibleTracking);
+    });
     </script>
     """,
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
@@ -95,7 +99,7 @@ with streamlit_analytics.track():
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
     # Selection for genres
-    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    genre = st.selectbox('CHOOSE YOUR FAVORITE CHANNEL:', ('OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
     playlists = {
@@ -130,9 +134,9 @@ with streamlit_analytics.track():
         video_index = 139
     elif 19 <= current_hour < 21:
         video_index = 149
-    elif 21 <= current_hour < 23:
+    elif 21 <= current hour < 23:
         video_index = 159
-    elif 23 <= current_hour < 24:
+    elif 23 <= current hour < 24:
         video_index = 169
     else:
         video_index = 0
