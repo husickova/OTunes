@@ -3,16 +3,17 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 from streamlit.components.v1 import html
 
-# Google Analytics Injection
-GA_HTML = """
+# Google Analytics Injection using iframe
+GA_IFRAME = """
+<iframe srcdoc="
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>GA Injection</title>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
+    <script async src='https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P'></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -23,12 +24,13 @@ GA_HTML = """
 <body>
 </body>
 </html>
+" width="0" height="0" style="border:0"></iframe>
 """
 
 # Streamlit app
 def main():
-    # Inject Google Analytics script using Streamlit Components
-    html(GA_HTML, height=0)
+    # Inject Google Analytics script using an iframe
+    html(GA_IFRAME, height=0)
 
     # Initialize streamlit-analytics
     with streamlit_analytics.track():
