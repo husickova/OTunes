@@ -16,7 +16,7 @@ def main():
       gtag('config', 'G-16H3MEHP7P');
     </script>
     """
-    components.html(GA_SCRIPT, height=0, width=0)
+    components.html(GA_SCRIPT, height=0)
 
     # CSS styles to center the text and customize font
     st.markdown(
