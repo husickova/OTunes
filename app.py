@@ -6,11 +6,12 @@ import streamlit.components.v1 as components
 # Set the page configuration
 st.set_page_config(page_title="OTUNES", page_icon="🎵", layout="centered")
 
-# Add the Plausible script using components.html to ensure it's added to the document head
+# Add the Plausible and Statcounter scripts using components.html to ensure they are added to the document head
 components.html(
     """
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Plausible script
         var plausibleScript = document.createElement('script');
         plausibleScript.defer = true;
         plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
@@ -23,6 +24,26 @@ components.html(
             alert('Plausible script failed to load. Please check your network settings.');
         };
         document.head.appendChild(plausibleScript);
+
+        // Statcounter script
+        var statcounterScript1 = document.createElement('script');
+        statcounterScript1.type = 'text/javascript';
+        statcounterScript1.text = `
+            var sc_project=13007390; 
+            var sc_invisible=1; 
+            var sc_security="224afd69"; 
+        `;
+        document.head.appendChild(statcounterScript1);
+
+        var statcounterScript2 = document.createElement('script');
+        statcounterScript2.type = 'text/javascript';
+        statcounterScript2.src = 'https://www.statcounter.com/counter/counter.js';
+        statcounterScript2.async = true;
+        document.head.appendChild(statcounterScript2);
+
+        var noScript = document.createElement('noscript');
+        noScript.innerHTML = '<div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13007390/0/224afd69/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div>';
+        document.body.appendChild(noScript);
     });
     </script>
     """,
@@ -121,7 +142,7 @@ with streamlit_analytics.track():
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
     # Selection for genres
-    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    genre = st.selectbox('Select a Genre:', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
     playlists = {
