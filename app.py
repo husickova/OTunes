@@ -6,7 +6,22 @@ import streamlit.components.v1 as components
 # Add the Plausible script using components.html to ensure it's added to the document head
 components.html(
     """
-    <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var plausibleScript = document.createElement('script');
+        plausibleScript.defer = true;
+        plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
+        plausibleScript.src = 'https://plausible.io/js/script.js';
+        plausibleScript.onload = function() {
+            console.log('Plausible script loaded successfully');
+        };
+        plausibleScript.onerror = function() {
+            console.error('Error loading Plausible script');
+            alert('Plausible script failed to load. Please check your network settings.');
+        };
+        document.head.appendChild(plausibleScript);
+    });
+    </script>
     """,
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
@@ -88,7 +103,7 @@ with streamlit_analytics.track():
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
     # Selection for genres
-    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    genre = st.selectbox('Select a Genre:', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
     playlists = {
