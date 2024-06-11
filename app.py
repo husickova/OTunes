@@ -19,17 +19,6 @@ components.html(
         document.head.appendChild(plausibleScript);
     });
 
-    // JavaScript to track goals with Plausible
-    function trackEvent(event_name) {
-        console.log("Sending event: " + event_name);
-        if (window.plausible) {
-            window.plausible(event_name);
-            console.log("Event sent: " + event_name);
-        } else {
-            console.error("Plausible not loaded");
-        }
-    }
-
     // Function to add Plausible event tracking to the select box
     function addPlausibleTracking() {
         const selectBox = document.querySelector('select');
@@ -45,7 +34,7 @@ components.html(
                 };
                 const eventName = eventNameMap[selectedOption];
                 if (eventName) {
-                    plausible('Genre Selection', { props: { genre: eventName } });
+                    plausible(eventName);
                 } else {
                     console.error("Event name mapping not found for: " + selectedOption);
                 }
@@ -143,7 +132,7 @@ with streamlit_analytics.track():
         video_index = 149
     elif 21 <= current_hour < 23:
         video_index = 159
-    elif 23 <= current_hour < 24:
+    elif 23 <= current hour < 24:
         video_index = 169
     else:
         video_index = 0
