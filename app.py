@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit_analytics2 as streamlit_analytics
 import datetime
+from streamlit.components.v1 import html
 
 # Google Analytics Injection
 GA_SCRIPT = """
@@ -16,8 +17,8 @@ GA_SCRIPT = """
 
 # Streamlit app
 def main():
-    # Inject Google Analytics script
-    st.markdown(GA_SCRIPT, unsafe_allow_html=True)
+    # Inject Google Analytics script using Streamlit Components
+    html(GA_SCRIPT, height=0)
 
     # Initialize streamlit-analytics
     with streamlit_analytics.track():
