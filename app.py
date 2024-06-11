@@ -7,7 +7,7 @@ import datetime
 import streamlit_analytics2 as streamlit_analytics
 
 # Vaše GA4 Measurement ID a API Secret
-GA4_MEASUREMENT_ID = "G-ERYGGG3MGS"
+GA4_MEASUREMENT_ID = "G-16H3MEHP7P"
 GA4_API_SECRET = "kqJ54inxSw2LWiCWDbdmwg"
 
 # Generování unikátního client_id a session_id pro každého uživatele
