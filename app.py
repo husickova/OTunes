@@ -3,15 +3,14 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 import streamlit.components.v1 as components
 
-# Add the Plausible script using components.html to ensure it's added to the document head
+# Add the local Plausible script using components.html to ensure it's added to the document head
 components.html(
     """
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var plausibleScript = document.createElement('script');
         plausibleScript.defer = true;
-        plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
-        plausibleScript.src = 'https://plausible.io/js/script.js';
+        plausibleScript.src = 'plausible.js';
         plausibleScript.onload = function() {
             console.log('Plausible script loaded successfully');
         };
@@ -115,7 +114,7 @@ with streamlit_analytics.track():
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
     # Selection for genres
-    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    genre = st.selectbox('Select a Genre:', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
     playlists = {
@@ -150,7 +149,7 @@ with streamlit_analytics.track():
         video_index = 139
     elif 19 <= current_hour < 21:
         video_index = 149
-    elif 21 <= current_hour < 23:
+    elif 21 <= currenthour < 23:
         video_index = 159
     elif 23 <= current_hour < 24:
         video_index = 169
