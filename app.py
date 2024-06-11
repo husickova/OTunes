@@ -6,6 +6,18 @@ import streamlit.components.v1 as components
 # Set the page configuration
 st.set_page_config(page_title="OTUNES", page_icon="🎵", layout="centered")
 
+# Add custom CSS to style the title
+st.markdown(
+    """
+    <style>
+    .title-text {
+        color: red; /* Set the title text color to red */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Add the Plausible script using components.html to ensure it's added to the document head
 components.html(
     """
