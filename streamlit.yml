@@ -32,6 +32,6 @@ jobs:
 
     - name: Run Streamlit app
       run: |
-        streamlit run app.py &
+        nohup streamlit run app.py &
         sleep 10
         curl -I http://localhost:8501
