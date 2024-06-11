@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 # Set the page configuration
 st.set_page_config(page_title="OTUNES", page_icon="🎵", layout="centered")
 
-# Add the Plausible and Statcounter scripts using components.html to ensure they are added to the document head
+# Add the Plausible script using components.html to ensure it is added to the document head
 components.html(
     """
     <script>
@@ -17,65 +17,50 @@ components.html(
         plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
         plausibleScript.src = 'https://plausible.io/js/script.tagged-events.js';
         document.head.appendChild(plausibleScript);
-
-        // Statcounter script
-        var statcounterScript1 = document.createElement('script');
-        statcounterScript1.type = 'text/javascript';
-        statcounterScript1.text = `
-            var sc_project=13007390; 
-            var sc_invisible=1; 
-            var sc_security="224afd69"; 
-        `;
-        document.head.appendChild(statcounterScript1);
-
-        var statcounterScript2 = document.createElement('script');
-        statcounterScript2.type = 'text/javascript';
-        statcounterScript2.src = 'https://www.statcounter.com/counter/counter.js';
-        statcounterScript2.async = true;
-        document.head.appendChild(statcounterScript2);
-
-        var noScript = document.createElement('noscript');
-        noScript.innerHTML = '<div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13007390/0/224afd69/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div>';
-        document.body.appendChild(noScript);
     });
+
+    // JavaScript to track goals with Plausible
+    function trackEvent(event_name) {
+        console.log("Sending event: " + event_name);
+        if (window.plausible) {
+            window.plausible(event_name);
+            console.log("Event sent: " + event_name);
+        } else {
+            console.error("Plausible not loaded");
+        }
+    }
+
+    // Function to add Plausible event tracking to the select box
+    function addPlausibleTracking() {
+        const selectBox = document.querySelector('select');
+        if (selectBox) {
+            selectBox.addEventListener('change', function() {
+                const selectedOption = selectBox.options[selectBox.selectedIndex].text;
+                const eventNameMap = {
+                    'OTUNES POP': 'OTUNES_POP',
+                    'OTUNES ROCK': 'OTUNES_ROCK',
+                    'OTUNES HIPHOP': 'OTUNES_HIPHOP',
+                    'OTUNES ELECTRO': 'OTUNES_ELECTRO',
+                    'OTUNES COUNTRY': 'OTUNES_COUNTRY'
+                };
+                const eventName = eventNameMap[selectedOption];
+                if (eventName) {
+                    plausible('Genre Selection', { props: { genre: eventName } });
+                } else {
+                    console.error("Event name mapping not found for: " + selectedOption);
+                }
+            });
+            console.log('Plausible tracking added to select box');
+        } else {
+            console.error('Select box not found');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', addPlausibleTracking);
     </script>
     """,
     height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
-
-# Add CSS class to the select box to track the events
-track_event_script = """
-<script>
-function addPlausibleTracking() {
-    const selectBox = document.querySelector('select');
-    if (selectBox) {
-        selectBox.addEventListener('change', function() {
-            const selectedOption = selectBox.options[selectBox.selectedIndex].text;
-            const eventNameMap = {
-                'OTUNES POP': 'OTUNES_POP',
-                'OTUNES ROCK': 'OTUNES_ROCK',
-                'OTUNES HIPHOP': 'OTUNES_HIPHOP',
-                'OTUNES ELECTRO': 'OTUNES_ELECTRO',
-                'OTUNES COUNTRY': 'OTUNES_COUNTRY'
-            };
-            const eventName = eventNameMap[selectedOption];
-            if (eventName) {
-                plausible('Genre Selection', { props: { genre: eventName } });
-            } else {
-                console.error("Event name mapping not found for: " + selectedOption);
-            }
-        });
-        console.log('Plausible tracking added to select box');
-    } else {
-        console.error('Select box not found');
-    }
-}
-
-document.addEventListener('DOMContentLoaded', addPlausibleTracking);
-</script>
-"""
-
-st.markdown(track_event_script, unsafe_allow_html=True)
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
