@@ -3,34 +3,19 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 from streamlit.components.v1 import html
 
-# Google Analytics Injection using iframe
-GA_IFRAME = """
-<iframe srcdoc="
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GA Injection</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P'></script>
+# Streamlit app
+def main():
+    # Inject Google Analytics script using Streamlit Components
+    GA_SCRIPT = """
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-16H3MEHP7P');
     </script>
-</head>
-<body>
-</body>
-</html>
-" width="0" height="0" style="border:0"></iframe>
-"""
-
-# Streamlit app
-def main():
-    # Inject Google Analytics script using an iframe
-    html(GA_IFRAME, height=0)
+    """
+    html(GA_SCRIPT)
 
     # Initialize streamlit-analytics
     with streamlit_analytics.track():
@@ -56,7 +41,7 @@ def main():
             }
             .subtitle-text {
                 text-align: center;
-                font-family: 'Open Sans', sans-serif; /* Customize font family */
+                font-family: 'Open Open Sans', sans-serif; /* Customize font family */
                 font-size: 28px; /* Customize font size for subtitle */
                 text-transform: uppercase; /* Transform text to uppercase */
             }
