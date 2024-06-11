@@ -3,19 +3,16 @@ import datetime
 
 # Streamlit app
 def main():
-    # Load Google Analytics script directly using iframe
+    # Load Google Analytics script directly using st.markdown
     GA_SCRIPT = """
-    <iframe srcdoc="
     <!-- Google tag (gtag.js) -->
     <script async src='https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P'></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-16H3MEHP7P');
     </script>
-    " style="display:none;"></iframe>
     """
     st.markdown(GA_SCRIPT, unsafe_allow_html=True)
 
