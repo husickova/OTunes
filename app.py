@@ -3,10 +3,18 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 import streamlit.components.v1 as components
 
-# Add the JavaScript snippet using a markdown
+# Add the JavaScript snippet using a markdown with window onload to ensure it loads after the page is fully loaded
 st.markdown(
     """
-    <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
+    <script>
+    window.onload = function() {
+        var script = document.createElement('script');
+        script.defer = true;
+        script.setAttribute('data-domain', 'otunes.streamlit.app');
+        script.src = 'https://plausible.io/js/script.js';
+        document.head.appendChild(script);
+    };
+    </script>
     """,
     unsafe_allow_html=True
 )
