@@ -4,9 +4,8 @@ import datetime
 
 # Streamlit app
 def main():
-    # Load Google Analytics script from an external file
+    # Load Google Analytics script directly
     GA_SCRIPT = """
-    <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
     <script>
@@ -16,7 +15,6 @@ def main():
 
       gtag('config', 'G-16H3MEHP7P');
     </script>
-    </head>
     """
     components.html(GA_SCRIPT, height=0, width=0)
 
