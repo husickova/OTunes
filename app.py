@@ -3,28 +3,99 @@ import streamlit_analytics2 as streamlit_analytics
 import datetime
 import streamlit.components.v1 as components
 
-# Add the JavaScript snippet using a markdown
-st.markdown(
+# Set the page configuration
+st.set_page_config(page_title="OTUNES", page_icon="🎵", layout="centered")
+
+# Add the Plausible script using components.html to ensure it's added to the document head
+components.html(
     """
-    <script defer data-domain="otunes.streamlit.app" src="https://plausible.io/js/script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var plausibleScript = document.createElement('script');
+        plausibleScript.defer = true;
+        plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
+        plausibleScript.src = 'https://plausible.io/js/script.js';
+        plausibleScript.onload = function() {
+            console.log('Plausible script loaded successfully');
+        };
+        plausibleScript.onerror = function() {
+            console.error('Error loading Plausible script');
+            alert('Plausible script failed to load. Please check your network settings.');
+        };
+        document.head.appendChild(plausibleScript);
+
+        // Add Statcounter script
+        var statcounterScript1 = document.createElement('script');
+        statcounterScript1.type = 'text/javascript';
+        statcounterScript1.text = `
+            var sc_project=13007390; 
+            var sc_invisible=1; 
+            var sc_security="224afd69"; 
+        `;
+        document.head.appendChild(statcounterScript1);
+
+        var statcounterScript2 = document.createElement('script');
+        statcounterScript2.type = 'text/javascript';
+        statcounterScript2.src = 'https://www.statcounter.com/counter/counter.js';
+        statcounterScript2.async = true;
+        document.head.appendChild(statcounterScript2);
+
+        var noScript = document.createElement('noscript');
+        noScript.innerHTML = '<div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13007390/0/224afd69/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div>';
+        document.body.appendChild(noScript);
+    });
+    </script>
     """,
-    unsafe_allow_html=True
+    height=0,  # Use height=0 to avoid rendering a large space in the Streamlit app
 )
 
-st.markdown(
-    """
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-16H3MEHP7P"></script>
+# JavaScript to track goals with enhanced debugging
+track_event_script = """
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+function trackEvent(event_name) {
+    alert("Sending event: " + event_name); // Debugging alert
+    console.log("Sending event: " + event_name); // Debugging log
+    if (window.plausible) {
+        window.plausible(event_name, {props: {source: 'streamlit'}});
+        console.log("Event sent: " + event_name);
+    } else {
+        console.error("Plausible not loaded");
+    }
+}
 
-  gtag('config', 'G-16H3MEHP7P');
+// Function to add Plausible event tracking to the select box
+function addPlausibleTracking() {
+    const selectBox = document.querySelector('select');
+    if (selectBox) {
+        selectBox.setAttribute('plausible-event-name', 'Genre+Selection');
+        selectBox.addEventListener('change', function() {
+            const selectedOption = selectBox.options[selectBox.selectedIndex].text;
+            const eventNameMap = {
+                'OTUNES POP': 'OTUNES_POP',
+                'OTUNES ROCK': 'OTUNES_ROCK',
+                'OTUNES HIPHOP': 'OTUNES_HIPHOP',
+                'OTUNES ELECTRO': 'OTUNES_ELECTRO',
+                'OTUNES COUNTRY': 'OTUNES_COUNTRY'
+            };
+            const eventName = eventNameMap[selectedOption];
+            if (eventName) {
+                trackEvent(eventName);
+            } else {
+                console.error("Event name mapping not found for: " + selectedOption);
+            }
+        });
+        console.log('Plausible tracking added to select box');
+    } else {
+        console.error('Select box not found');
+    }
+}
+
+// Wait for the DOM to load before adding the tracking
+document.addEventListener('DOMContentLoaded', addPlausibleTracking);
 </script>
-    """,
-    unsafe_allow_html=True
-)
+"""
+
+st.markdown(track_event_script, unsafe_allow_html=True)
 
 # Initialize streamlit-analytics
 with streamlit_analytics.track():
@@ -57,17 +128,20 @@ with streamlit_analytics.track():
         .red-text {
             color: red; /* Red color for "O" */
         }
+        .title-text span {
+            color: red; /* Red color for the span inside title-text */
+        }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
     # Streamlit interface
-    st.markdown('<h1 class="title-text"><span class="red-text">O</span>TUNES</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="title-text"><span>O</span>TUNES</h1>', unsafe_allow_html=True)
     st.markdown('<h2 class="subtitle-text">NEVERENDING MUSIC CHANNELS FULL OF MUSIC YOU LOVE</h2>', unsafe_allow_html=True)
     
-    # Selection for genres 
-    genre = st.selectbox('', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
+    # Selection for genres
+    genre = st.selectbox('Select a Genre:', ('CHOOSE YOUR FAVORITE CHANNEL:', 'OTUNES POP', 'OTUNES ROCK', 'OTUNES HIPHOP', 'OTUNES ELECTRO', 'OTUNES COUNTRY'))
 
     # Dictionary of playlist IDs
     playlists = {
