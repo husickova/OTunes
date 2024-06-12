@@ -6,16 +6,23 @@ import streamlit.components.v1 as components
 # Set the page configuration
 st.set_page_config(page_title="OTUNES", page_icon="🎵", layout="centered")
 
-# Add the Plausible script using components.html to ensure it is added to the document head
+# Add the Plausible scripts using components.html to ensure they are added to the document head
 components.html(
     """
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Plausible script with tagged events
+        var plausibleScriptTagged = document.createElement('script');
+        plausibleScriptTagged.defer = true;
+        plausibleScriptTagged.setAttribute('data-domain', 'otunes.streamlit.app');
+        plausibleScriptTagged.src = 'https://plausible.io/js/script.tagged-events.js';
+        document.head.appendChild(plausibleScriptTagged);
+
+        // Additional Plausible script
         var plausibleScript = document.createElement('script');
         plausibleScript.defer = true;
-        plausibleScript.setAttribute('data-domain', 'otunes.streamlit.app');
-        plausibleScript.src = 'https://plausible.io/js/script.tagged-events.js';
+        plausibleScript.setAttribute('data-domain', 'otunes.cz');
+        plausibleScript.src = 'https://plausible.io/js/script.js';
         document.head.appendChild(plausibleScript);
     });
 
